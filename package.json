@@ -1,0 +1,40 @@
+{
+  "name": "sparked-server",
+  "version": "0.0.1",
+  "description": "a server for sparked",
+  "main": "server.js",
+  "dependencies": {
+    "apollo-server-express": "^2.5.0",
+    "body-parser": "^1.18.2",
+    "casual": "^1.5.19",
+    "express": "^4.16.2",
+    "graphql": "^14.3.0",
+    "lodash": "^4.17.4",
+    "mongoose": "^4.13.14",
+    "node-fetch": "^1.7.3",
+    "sequelize": "^4.28.2",
+    "sqlite": "^2.9.0"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.1"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ]
+  },
+  "scripts": {
+    "start": "nodemon ./server.js --exec babel-node"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sparkeduab/sparked-server.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sparkeduab/sparked-server/issues"
+  },
+  "homepage": "https://github.com/sparkeduab/sparked-server#readme"
+}
