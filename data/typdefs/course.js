@@ -1,6 +1,7 @@
 import { gql } from "apollo-server-express";
 
-const typeDefs = `
+const typeDefs = gql`
+  scalar Date
   type Query {
     allCourses: [Course]
   }
@@ -13,6 +14,8 @@ const typeDefs = `
   type Course {
     _id: String
     name: String
+    createdAt: Date
+    createdBy: String
   }
 `;
 
