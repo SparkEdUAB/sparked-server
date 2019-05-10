@@ -1,7 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
-import { ApolloServer } from "apollo-server-express";
-
+import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
+import { mergeResolvers, mergeTypes } from "merge-graphql-schemas";
 // resolvers
 import courseResolvers from "./data/resolvers/course";
 import unitResolvers from "./data/resolvers/unit";
@@ -22,12 +22,16 @@ mongoose.Promise = global.Promise;
 mongoose.connect(`mongodb://${MONGO_URL}:${MONGO_PORT}/${dbName}`, {
   useMongoClient: true
 });
-
 const graphQLServer = express();
-const server = new ApolloServer({
-  typeDefs: courseTypeDefs,
-  resolvers: courseResolvers
+
+const resolvers = mergeResolvers([courseResolvers, unitResolvers]);
+const typeDefs = mergeTypes([courseTypeDefs, unitTypeDefs]);
+
+const schema = makeExecutableSchema({
+  typeDefs,
+  resolvers
 });
+const server = new ApolloServer({ schema });
 
 server.applyMiddleware({ app: graphQLServer, path: "/graphiql" });
 

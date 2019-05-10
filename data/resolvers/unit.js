@@ -10,8 +10,8 @@ const unitResolvers = {
     addUnit(root, args) {
       let unit = new Unit();
       unit.name = args.name;
-      course.createdAt = args.createdAt;
-      course.createdBy = args.createdBy;
+      unit.createdAt = args.createdAt;
+      unit.createdBy = args.createdBy;
       return unit.save();
     }
   }
