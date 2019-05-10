@@ -10,6 +10,8 @@ const resolvers = {
     addCourse(root, args) {
       let course = new Course();
       course.name = args.name;
+      course.createdAt = args.createdAt;
+      course.createdBy = args.createdBy;
       return course.save();
     },
     deleteCourse(root, args) {

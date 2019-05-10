@@ -1,8 +1,8 @@
 import express from "express";
 import mongoose from "mongoose";
-import { ApolloServer, addMockFunctionsToSchema } from "apollo-server-express";
-import resolvers from "./data/resolvers/course";
-import typeDefs from "./data/typdefs/course";
+import { ApolloServer } from "apollo-server-express";
+import courseResolvers from "./data/resolvers/course";
+import courseTypeDefs from "./data/typdefs/course";
 import {
   GRAPHQL_PORT,
   MONGO_PORT,
@@ -18,8 +18,8 @@ mongoose.connect(`mongodb://${MONGO_URL}:${MONGO_PORT}/${dbName}`, {
 
 const graphQLServer = express();
 const server = new ApolloServer({
-  typeDefs,
-  resolvers
+  typeDefs: courseTypeDefs,
+  resolvers: courseResolvers
 });
 
 server.applyMiddleware({ app: graphQLServer, path: "/graphiql" });
