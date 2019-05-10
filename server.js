@@ -1,8 +1,15 @@
 import express from "express";
 import mongoose from "mongoose";
 import { ApolloServer } from "apollo-server-express";
+
+// resolvers
 import courseResolvers from "./data/resolvers/course";
+import unitResolvers from "./data/resolvers/unit";
+
+// typedefs
 import courseTypeDefs from "./data/typdefs/course";
+import unitTypeDefs from "./data/typdefs/unit";
+
 import {
   GRAPHQL_PORT,
   MONGO_PORT,
