@@ -1,6 +1,6 @@
 import { gql } from "apollo-server-express";
 
-const typeDefs = gql`
+const typeDefs = `
   type Query {
     allCourses: [Course]
   }

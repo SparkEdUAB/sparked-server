@@ -1,16 +1,16 @@
 import express from "express";
-import { ApolloServer } from "apollo-server-express";
+import mongoose from "mongoose";
+import { ApolloServer, addMockFunctionsToSchema } from "apollo-server-express";
 import resolvers from "./data/resolvers/course";
 import typeDefs from "./data/typdefs/course";
-
+import {
+  GRAPHQL_PORT,
+  MONGO_PORT,
+  MONGO_URL,
+  dbName
+} from "./data/config/config";
 import { Course } from "./data/models/courses";
 
-const GRAPHQL_PORT = 3000;
-const MONGO_PORT = 27017;
-const MONGO_URL = "localhost";
-const dbName = "sparked";
-
-let mongoose = require("mongoose");
 mongoose.Promise = global.Promise;
 mongoose.connect(`mongodb://${MONGO_URL}:${MONGO_PORT}/${dbName}`, {
   useMongoClient: true
