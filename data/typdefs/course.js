@@ -2,6 +2,7 @@ import { gql } from "apollo-server-express";
 
 const typeDefs = gql`
   # scalar String
+  # directive @auth on Query
   type Query {
     allCourses: [Course]
   }

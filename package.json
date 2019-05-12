@@ -4,6 +4,12 @@
   "description": "a server for sparked",
   "main": "server.js",
   "dependencies": {
+    "@accounts/database-manager": "^0.14.0",
+    "@accounts/graphql-api": "^0.14.0",
+    "@accounts/mongo": "^0.14.0",
+    "@accounts/password": "^0.14.0",
+    "@accounts/server": "^0.14.0",
+    "@graphql-modules/core": "^0.7.1",
     "apollo-server-express": "^2.5.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "body-parser": "^1.18.2",

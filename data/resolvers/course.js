@@ -7,11 +7,12 @@ const resolvers = {
     }
   },
   Mutation: {
-    addCourse(root, args) {
+    addCourse(root, args, context) {
       let course = new Course();
       course.name = args.name;
       course.createdAt = args.createdAt;
       course.createdBy = args.createdBy;
+      console.log(context);
       return course.save();
     },
     deleteCourse(root, args) {
