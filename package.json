@@ -10,6 +10,7 @@
     "casual": "^1.5.19",
     "express": "^4.16.2",
     "graphql": "^14.3.0",
+    "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.4",
     "merge-graphql-schemas": "^1.5.8",
     "mongoose": "^4.13.14",

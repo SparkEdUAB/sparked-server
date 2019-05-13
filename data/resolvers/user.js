@@ -1,4 +1,6 @@
 import bcrypt from "bcrypt";
+import jwt from "jsonwebtoken";
+import pick from "lodash/pick";
 import User from "../models/user";
 
 const userResolver = {
@@ -14,6 +16,26 @@ const userResolver = {
       user.password = await bcrypt.hash(password, 12);
 
       return user.save();
+    },
+    async login(root, { email, password }, { SECRET }) {
+      const user = await User.findOne({ email });
+      console.log(await user.password);
+      if (!user) {
+        throw new Error("No user found ");
+      }
+      const isValid = await bcrypt.compare(password, user.password);
+      if (!isValid) {
+        throw new Error("Incorrect password ");
+      }
+      //   sign in the user
+      const token = await jwt.sign(
+        {
+          user: pick(user, ["_id", "email"])
+        },
+        SECRET,
+        { expiresIn: "1h" }
+      );
+      return token;
     }
   }
 };

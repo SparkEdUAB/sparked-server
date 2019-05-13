@@ -21,6 +21,8 @@ import {
 } from "./data/config/config";
 import { Course } from "./data/models/courses";
 
+const SECRET = "sudfnsjdfnkdsfu48243092incweuchw";
+
 mongoose.Promise = global.Promise;
 
 // mongoConnection = mongoose.connection;
@@ -44,7 +46,10 @@ const schema = makeExecutableSchema({
   resolvers
 });
 const server = new ApolloServer({
-  schema
+  schema,
+  context: {
+    SECRET
+  }
 });
 
 server.applyMiddleware({ app: graphQLServer, path: "/graphiql" });
