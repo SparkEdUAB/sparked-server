@@ -6,10 +6,12 @@ import { mergeResolvers, mergeTypes } from "merge-graphql-schemas";
 // resolvers
 import courseResolvers from "./data/resolvers/course";
 import unitResolvers from "./data/resolvers/unit";
+import userResolvers from "./data/resolvers/user";
 
 // typedefs
 import courseTypeDefs from "./data/typdefs/course";
 import unitTypeDefs from "./data/typdefs/unit";
+import userTypeDefs from "./data/typdefs/user";
 
 import {
   GRAPHQL_PORT,
@@ -30,8 +32,12 @@ mongoose.connect(`mongodb://${MONGO_URL}:${MONGO_PORT}/${dbName}`, {
 
 const graphQLServer = express();
 
-const resolvers = mergeResolvers([courseResolvers, unitResolvers]);
-const typeDefs = mergeTypes([courseTypeDefs, unitTypeDefs]);
+const resolvers = mergeResolvers([
+  courseResolvers,
+  unitResolvers,
+  userResolvers
+]);
+const typeDefs = mergeTypes([courseTypeDefs, unitTypeDefs, userTypeDefs]);
 
 const schema = makeExecutableSchema({
   typeDefs,
