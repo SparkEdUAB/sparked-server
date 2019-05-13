@@ -2,7 +2,7 @@ import { Course } from "../models/courses";
 
 const resolvers = {
   Query: {
-    allCourses() {
+    allCourses(root, args, { user }) {
       return Course.find({});
     }
   },

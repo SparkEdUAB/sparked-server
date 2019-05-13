@@ -2,7 +2,7 @@ import express from "express";
 import mongoose from "mongoose";
 import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
 import { mergeResolvers, mergeTypes } from "merge-graphql-schemas";
-
+import jwt from "jsonwebtoken";
 // resolvers
 import courseResolvers from "./data/resolvers/course";
 import unitResolvers from "./data/resolvers/unit";
@@ -47,11 +47,23 @@ const schema = makeExecutableSchema({
 });
 const server = new ApolloServer({
   schema,
-  context: {
+  context: ({ req }) => ({
+    user: req.user,
     SECRET
-  }
+  })
 });
 
+const authUser = async req => {
+  const token = await req.headers["authorization"];
+  try {
+    const { user } = jwt.verify(token, SECRET);
+    req.user = user;
+  } catch (error) {
+    console.log(error);
+  }
+  req.next();
+};
+graphQLServer.use(authUser);
 server.applyMiddleware({ app: graphQLServer, path: "/graphiql" });
 
 //rest api instead

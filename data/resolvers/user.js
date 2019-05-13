@@ -7,6 +7,10 @@ const userResolver = {
   Query: {
     allUsers() {
       return User.find({});
+    },
+    getUser(root, args, { user }) {
+      console.log(user);
+      return User.findOne({ email: user.email });
     }
   },
   Mutation: {
@@ -19,7 +23,6 @@ const userResolver = {
     },
     async login(root, { email, password }, { SECRET }) {
       const user = await User.findOne({ email });
-      console.log(await user.password);
       if (!user) {
         throw new Error("No user found ");
       }

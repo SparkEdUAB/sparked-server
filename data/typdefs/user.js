@@ -4,6 +4,7 @@ const userSchema = gql`
   #   scalar Date
   type Query {
     allUsers: [User]
+    getUser: User
   }
   type Mutation {
     register(email: String!, password: String!): User!
