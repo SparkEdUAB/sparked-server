@@ -1,13 +1,17 @@
+import { AuthenticationError } from "apollo-server-express";
 import { Course } from "../models/courses";
 
 const resolvers = {
   Query: {
-    allCourses() {
+    allCourses(root, args, { user }) {
+      if (!user) {
+        throw new AuthenticationError("you must be logged in");
+      }
       return Course.find({});
     }
   },
   Mutation: {
-    addCourse(root, args) {
+    addCourse(root, args, context) {
       let course = new Course();
       course.name = args.name;
       course.createdAt = args.createdAt;

@@ -1,8 +1,12 @@
+import { AuthenticationError } from "apollo-server-express";
 import { Unit } from "../models/unit";
 
 const unitResolvers = {
   Query: {
-    allUnits() {
+    allUnits(root, args, { user }) {
+      if (!user) {
+        throw new AuthenticationError("you must be logged in");
+      }
       return Unit.find({});
     }
   },
