@@ -3,7 +3,7 @@ import { Course } from "../models/courses";
 
 const resolvers = {
   Query: {
-    allCourses(root, args, { user }) {
+    getCourses(root, args, { user }) {
       if (!user) {
         throw new AuthenticationError("you must be logged in");
       }

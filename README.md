@@ -19,7 +19,7 @@ mutation {
 ```graphql
 {
   query {
-    allCourses {
+    getCourses {
       id
       name
     }

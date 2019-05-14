@@ -4,7 +4,7 @@ const typeDefs = gql`
   # scalar String
   # directive @auth on Query
   type Query {
-    allCourses: [Course]
+    getCourses: [Course]
   }
   type Mutation {
     # A mutation to add a new channel to the list of channels
