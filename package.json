@@ -5,6 +5,7 @@
   "main": "server.js",
   "dependencies": {
     "apollo-server-express": "^2.5.0",
+    "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.18.2",
     "casual": "^1.5.19",
@@ -19,8 +20,10 @@
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
+    "babel-jest": "^24.8.0",
     "babel-plugin-transform-object-rest-spread": "^6.26.0",
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "jest": "^24.8.0"
   },
   "babel": {
     "presets": [
@@ -31,7 +34,8 @@
     ]
   },
   "scripts": {
-    "start": "nodemon ./server.js --exec babel-node"
+    "start": "nodemon ./server.js --exec babel-node",
+    "test": "jest"
   },
   "repository": {
     "type": "git",
