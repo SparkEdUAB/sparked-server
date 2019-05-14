@@ -21,15 +21,12 @@ import {
   GRAPHQL_PORT,
   MONGO_PORT,
   MONGO_URL,
-  dbName
+  dbName,
+  SECRET
 } from "./data/config/config";
 import { Course } from "./data/models/courses";
 
-const SECRET = "sudfnsjdfnkdsfu48243092incweuchw";
-
 mongoose.Promise = global.Promise;
-
-// mongoConnection = mongoose.connection;
 
 // Build a storage for storing users
 mongoose.connect(`mongodb://${MONGO_URL}:${MONGO_PORT}/${dbName}`, {
@@ -62,9 +59,11 @@ const server = new ApolloServer({
 
 const authUser = async req => {
   const token = await req.headers["authorization"];
+
   try {
     const { user } = await jwt.verify(token, SECRET);
     req.user = user;
+    req.isAuth = true;
     console.log(user);
   } catch (error) {
     console.log(error);
