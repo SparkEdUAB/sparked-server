@@ -3,7 +3,7 @@ import { Unit } from "../models/unit";
 
 const unitResolvers = {
   Query: {
-    allUnits(root, args, { user }) {
+    getUnits(root, args, { user }) {
       if (!user) {
         throw new AuthenticationError("you must be logged in");
       }
