@@ -9,14 +9,9 @@ dotenv.config();
 const token = process.env.TOKEN;
 const url = process.env.URL;
 
-// console.log();
 afterAll(async () => {
   await child_process.exec(`${process.env.PWD}/cleanCollections.sh`);
 });
-
-// afterEach(() => {
-//   console.log("I run after test");
-// });
 
 describe("unit resolvers", () => {
   test("should return an error when not authenticated", async () => {
