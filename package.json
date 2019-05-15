@@ -2,7 +2,7 @@
   "name": "sparked-server",
   "version": "0.0.1",
   "description": "a server for sparked",
-  "main": "server.js",
+  "main": "index.js",
   "dependencies": {
     "@babel/runtime": "^7.4.4",
     "apollo-server-express": "^2.5.0",
@@ -32,8 +32,8 @@
     "jest": "^24.8.0"
   },
   "scripts": {
-    "start": "nodemon ./server.js --exec babel-node",
-    "test-server": "TEST_DB=sparked-test  nodemon ./server.js --exec babel-node",
+    "start": "nodemon ./index.js --exec babel-node",
+    "test-server": "TEST_DB=sparked-test  nodemon ./index.js --exec babel-node",
     "test": "jest --config ./jest.config.js"
   },
   "repository": {
