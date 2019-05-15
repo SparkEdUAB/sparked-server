@@ -1,7 +1,8 @@
 import axios from "axios";
 import dotenv from "dotenv";
 import mongoose from "mongoose";
-import { Unit } from "../data/models/unit";
+import child_process from "child_process";
+import { Unit, UnitSchema } from "../data/models/unit";
 
 dotenv.config();
 
@@ -9,8 +10,12 @@ const token = process.env.TOKEN;
 const url = process.env.URL;
 
 // console.log();
-// beforeEach(() => {
-//   mongoose.connection.deleteModel("Units");
+afterAll(async () => {
+  await child_process.exec(`${process.env.PWD}/cleanCollections.sh`);
+});
+
+// afterEach(() => {
+//   console.log("I run after test");
 // });
 
 describe("unit resolvers", () => {
@@ -73,6 +78,7 @@ describe("unit resolvers", () => {
       }
     );
     const { data } = response;
+
     expect(data).toMatchObject({
       data: {
         getUnits: [
@@ -82,5 +88,7 @@ describe("unit resolvers", () => {
         ]
       }
     });
+    expect(data.data).toHaveProperty("getUnits");
+    expect(data.data.getUnits[0].name).toBe("Fundamentals");
   });
 });
