@@ -1,8 +1,11 @@
 import axios from "axios";
+import dotenv from "dotenv";
 
-const token =
-  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVjZDkzYzJkMzFiYzRjMmVmYjhlOTkyNCIsImVtYWlsIjoib2xpdmllckBnbWFpbC5jb20ifSwiaWF0IjoxNTU3OTAwNDg4LCJleHAiOjE1NTg1MDUyODh9.yntMrz474NMoJSlPu_PHfGpOaYqwsVRXyRryHi_w5Uw";
-const url = "http://localhost:3000/graphiql";
+dotenv.config();
+
+// const url = "http://localhost:3000/graphiql";
+const token = process.env.TOKEN;
+const url = process.env.URL;
 
 describe("user resolvers", () => {
   test("should return an error when not authenticated", async () => {
