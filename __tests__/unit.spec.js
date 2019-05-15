@@ -2,11 +2,11 @@ import axios from "axios";
 
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVjZDkzYzJkMzFiYzRjMmVmYjhlOTkyNCIsImVtYWlsIjoib2xpdmllckBnbWFpbC5jb20ifSwiaWF0IjoxNTU3OTAwNDg4LCJleHAiOjE1NTg1MDUyODh9.yntMrz474NMoJSlPu_PHfGpOaYqwsVRXyRryHi_w5Uw";
-
+const url = "http://localhost:3000/graphiql";
 describe("user resolvers", () => {
   test("should query all units", async () => {
     const response = await axios.post(
-      "http://localhost:3000/graphiql",
+      url,
       {
         query: `
         query {
@@ -53,7 +53,7 @@ describe("user resolvers", () => {
   });
 
   test("should return an error when not authenticated", async () => {
-    const responseData = await axios.post("http://localhost:3000/graphiql", {
+    const responseData = await axios.post(url, {
       query: `
         query {
             getUnits {
