@@ -3,19 +3,59 @@ import axios from "axios";
 const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVjZDkzYzJkMzFiYzRjMmVmYjhlOTkyNCIsImVtYWlsIjoib2xpdmllckBnbWFpbC5jb20ifSwiaWF0IjoxNTU3OTAwNDg4LCJleHAiOjE1NTg1MDUyODh9.yntMrz474NMoJSlPu_PHfGpOaYqwsVRXyRryHi_w5Uw";
 const url = "http://localhost:3000/graphiql";
+
 describe("user resolvers", () => {
+  test("should return an error when not authenticated", async () => {
+    const responseData = await axios.post(url, {
+      query: `
+      query {
+        getUnits {
+          name
+          _id
+        }
+      }
+      `
+    });
+    const {
+      data: { data, errors }
+    } = responseData;
+
+    expect(data.getUnits).toBe(null);
+    expect(errors[0].message).toBe("you must be logged in");
+  });
+
+  test("should create a course and return proper data", async () => {
+    const course = await axios.post(url, {
+      mutation: `
+      mutation {
+        addUnit(name: "Fundamentals", createdBy:"olivier") {
+          _id
+          name
+          createdAt
+          createdBy
+        }
+      }
+      `
+    });
+    const {
+      data: { addUnit }
+    } = course;
+    expect(addUnit.name).toBe("Fundamentals");
+    expect(addUnit.createdBy).toBe("olivier");
+    expect(addUnit.createdAt).toBe(null);
+  });
   test("should query all units", async () => {
     const response = await axios.post(
       url,
       {
         query: `
-        query {
-            getUnits {
-                name
-                _id
-            }
-        }
-        `
+          query {
+              getUnits {
+                  name
+                  _id
+              }
+          }
+          `
       },
       {
         headers: {
@@ -50,24 +90,5 @@ describe("user resolvers", () => {
         ]
       }
     });
-  });
-
-  test("should return an error when not authenticated", async () => {
-    const responseData = await axios.post(url, {
-      query: `
-        query {
-            getUnits {
-                name
-                _id
-            }
-        }
-        `
-    });
-    const {
-      data: { data, errors }
-    } = responseData;
-
-    expect(data.getUnits).toBe(null);
-    expect(errors[0].message).toBe("you must be logged in");
   });
 });
