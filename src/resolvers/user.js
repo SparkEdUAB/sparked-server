@@ -36,7 +36,7 @@ const userResolver = {
           user: pick(user, ["_id", "email"])
         },
         SECRET,
-        { expiresIn: "1h" }
+        { expiresIn: "1w" }
       );
       return token;
     }
