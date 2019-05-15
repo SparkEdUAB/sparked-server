@@ -34,7 +34,7 @@
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node",
     "test-server": "TEST_DB=sparked-test  nodemon ./server.js --exec babel-node",
-    "test": "jest --watch"
+    "test": "jest --watch --config ./jest.config.js"
   },
   "repository": {
     "type": "git",

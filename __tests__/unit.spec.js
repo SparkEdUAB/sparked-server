@@ -1,17 +1,10 @@
 import axios from "axios";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
-import child_process from "child_process";
-import { Unit, UnitSchema } from "../data/models/unit";
 
 dotenv.config();
 
 const token = process.env.TOKEN;
 const url = process.env.URL;
-
-afterAll(async () => {
-  await child_process.exec(`${process.env.PWD}/cleanCollections.sh`);
-});
 
 describe("unit resolvers", () => {
   test("should return an error when not authenticated", async () => {
