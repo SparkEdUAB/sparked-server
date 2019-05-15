@@ -5,15 +5,15 @@ import { mergeResolvers, mergeTypes } from "merge-graphql-schemas";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
 // resolvers
-import courseResolvers from "./data/resolvers/course";
-import unitResolvers from "./data/resolvers/unit";
-import userResolvers from "./data/resolvers/user";
+import courseResolvers from "./src/resolvers/course";
+import unitResolvers from "./src/resolvers/unit";
+import userResolvers from "./src/resolvers/user";
 
 // typedefs
-import courseTypeDefs from "./data/typdefs/course";
-import unitTypeDefs from "./data/typdefs/unit";
-import userTypeDefs from "./data/typdefs/user";
-import { Course } from "./data/models/courses";
+import courseTypeDefs from "./src/typdefs/course";
+import unitTypeDefs from "./src/typdefs/unit";
+import userTypeDefs from "./src/typdefs/user";
+import { Course } from "./src/models/courses";
 
 dotenv.config();
 
@@ -22,7 +22,8 @@ mongoose.Promise = global.Promise;
 // Build a storage for storing users
 mongoose.connect(
   `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/${process.env
-    .TEST_DB || "sparked"}`
+    .TEST_DB || "sparked"}`,
+  { useNewUrlParser: true }
 );
 
 const graphQLServer = express();
