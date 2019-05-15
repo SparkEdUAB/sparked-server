@@ -29,9 +29,7 @@ import { Course } from "./data/models/courses";
 mongoose.Promise = global.Promise;
 
 // Build a storage for storing users
-mongoose.connect(`mongodb://${MONGO_URL}:${MONGO_PORT}/${dbName}`, {
-  useMongoClient: true
-});
+mongoose.connect(`mongodb://${MONGO_URL}:${MONGO_PORT}/${dbName}`);
 
 const graphQLServer = express();
 
