@@ -4,7 +4,7 @@ const token =
   "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVjZDkzYzJkMzFiYzRjMmVmYjhlOTkyNCIsImVtYWlsIjoib2xpdmllckBnbWFpbC5jb20ifSwiaWF0IjoxNTU3OTAwNDg4LCJleHAiOjE1NTg1MDUyODh9.yntMrz474NMoJSlPu_PHfGpOaYqwsVRXyRryHi_w5Uw";
 
 describe("user resolvers", () => {
-  test("should query all users", async () => {
+  test("should query all units", async () => {
     const response = await axios.post(
       "http://localhost:3000/graphiql",
       {
@@ -50,5 +50,25 @@ describe("user resolvers", () => {
         ]
       }
     });
+  });
+
+  test("should return an error when not authenticated", async () => {
+    const responseData = await axios.post("http://localhost:3000/graphiql", {
+      query: `
+        query {
+            getUnits {
+                name
+                _id
+            }
+        }
+        `
+    });
+    const {
+      data: { data, errors }
+    } = responseData;
+    console.log(data);
+
+    expect(data.getUnits).toBe(null);
+    expect(errors[0].message).toBe("you must be logged in");
   });
 });
