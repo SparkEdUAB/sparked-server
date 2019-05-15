@@ -4,8 +4,8 @@
   "description": "a server for sparked",
   "main": "server.js",
   "dependencies": {
+    "@babel/runtime": "^7.4.4",
     "apollo-server-express": "^2.5.0",
-    "axios": "^0.18.0",
     "bcrypt": "^3.0.6",
     "body-parser": "^1.18.2",
     "casual": "^1.5.19",
@@ -19,19 +19,15 @@
     "sqlite": "^2.9.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.4.4",
+    "@babel/core": "^7.4.4",
+    "@babel/node": "^7.2.2",
+    "@babel/plugin-transform-runtime": "^7.4.4",
+    "@babel/preset-env": "^7.4.4",
+    "axios": "^0.18.0",
     "babel-jest": "^24.8.0",
-    "babel-plugin-transform-object-rest-spread": "^6.26.0",
     "babel-preset-env": "^1.6.1",
     "jest": "^24.8.0"
-  },
-  "babel": {
-    "presets": [
-      "env"
-    ],
-    "plugins": [
-      "transform-object-rest-spread"
-    ]
   },
   "scripts": {
     "start": "nodemon ./server.js --exec babel-node",
