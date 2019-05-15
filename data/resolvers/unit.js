@@ -4,9 +4,9 @@ import { Unit } from "../models/unit";
 const unitResolvers = {
   Query: {
     getUnits(root, args, { user }) {
-      // if (!user) {
-      //   throw new AuthenticationError("you must be logged in");
-      // }
+      if (!user) {
+        throw new AuthenticationError("you must be logged in");
+      }
       return Unit.find({});
     }
   },

@@ -1,9 +1,14 @@
 import axios from "axios";
 
+const token =
+  "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyIjp7Il9pZCI6IjVjZDkzYzJkMzFiYzRjMmVmYjhlOTkyNCIsImVtYWlsIjoib2xpdmllckBnbWFpbC5jb20ifSwiaWF0IjoxNTU3OTAwNDg4LCJleHAiOjE1NTg1MDUyODh9.yntMrz474NMoJSlPu_PHfGpOaYqwsVRXyRryHi_w5Uw";
+
 describe("user resolvers", () => {
   test("should query all users", async () => {
-    const response = await axios.post("http://localhost:3000/graphiql", {
-      query: `
+    const response = await axios.post(
+      "http://localhost:3000/graphiql",
+      {
+        query: `
         query {
             getUnits {
                 name
@@ -11,7 +16,13 @@ describe("user resolvers", () => {
             }
         }
         `
-    });
+      },
+      {
+        headers: {
+          authorization: token
+        }
+      }
+    );
     const { data } = response;
     expect(data).toMatchObject({
       data: {
