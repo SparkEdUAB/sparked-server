@@ -1,5 +1,7 @@
 ## sparked-server
 
+[![Build Status](https://travis-ci.com/SparkEdUAB/sparked-server.svg?branch=master)](https://travis-ci.com/SparkEdUAB/sparked-server)
+
 This serves data for the sparked client
 
 The following are examples of data of GraphQL queries and mutations
