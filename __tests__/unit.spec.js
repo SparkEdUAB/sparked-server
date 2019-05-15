@@ -66,7 +66,6 @@ describe("user resolvers", () => {
     const {
       data: { data, errors }
     } = responseData;
-    console.log(data);
 
     expect(data.getUnits).toBe(null);
     expect(errors[0].message).toBe("you must be logged in");
