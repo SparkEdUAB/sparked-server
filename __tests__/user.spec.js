@@ -54,4 +54,33 @@ describe('user resolvers', () => {
     expect(data).toBeNull()
     expect(errors[0].message).toBe('No user found ')
   })
+  test("shouldn't login when password is wrong", async () => {
+    const userResponse = await axios.post(process.env.URL, {
+      query: `
+            mutation {
+                login(email:"joe@gmail.com", password:"3456")
+                }
+          `,
+    })
+    const {
+      data: { data, errors },
+    } = userResponse
+    expect(data).toBeNull()
+    expect(errors[0].message).toBe('Incorrect password ')
+  })
+  test('should log the user in when credentials are correct', async () => {
+    const _userResponse = await axios.post(process.env.URL, {
+      query: `
+            mutation {
+                login(email:"joe@gmail.com", password:"123456")
+                }
+          `,
+    })
+    const {
+      data: { data, errors },
+    } = _userResponse
+    expect(data).toBeTruthy()
+    expect(data.login).toBeDefined()
+    expect(errors).toBeUndefined()
+  })
 })
