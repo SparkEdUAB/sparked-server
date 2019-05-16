@@ -33,7 +33,7 @@
   },
   "scripts": {
     "start": "nodemon ./index.js --exec babel-node",
-    "test-server": "TEST_DB=sparked-test  nodemon ./index.js --exec babel-node",
+    "dev": "TEST_DB=sparked-test  nodemon ./index.js --exec babel-node",
     "test": "jest --config ./jest.config.js"
   },
   "repository": {

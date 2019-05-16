@@ -20,18 +20,14 @@ dotenv.config();
 mongoose.Promise = global.Promise;
 
 // Build a storage for storing users
-// `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/${process.env
-//   .TEST_DB || "sparked"}`,
-console.log(
-  `mongodb://${process.env.USER}:${
-    process.env.PASS
-  }@ds157276.mlab.com:57276/${process.env.TEST_DB || "sparked"}`
-);
+console.log(process.env.TEST_DB || "prod");
 
 mongoose.connect(
-  `mongodb://${process.env.USER}:${
-    process.env.PASS
-  }@ds157276.mlab.com:57276/${process.env.TEST_DB || "sparked"}`,
+  !process.env.TEST_DB
+    ? `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/sparked}`
+    : `mongodb://${process.env.USER}:${
+        process.env.PASS
+      }@ds157276.mlab.com:57276/${process.env.TEST_DB || "sparked"}`,
   { useNewUrlParser: true }
 );
 
