@@ -1,7 +1,7 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express'
-import { mergeResolvers, mergeTypes } from 'merge-graphql-schemas'
+import { mergeResolvers } from 'merge-graphql-schemas'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 // resolvers
@@ -10,10 +10,8 @@ import unitResolvers from './src/resolvers/unit'
 import userResolvers from './src/resolvers/user'
 
 // typedefs
-// import courseTypeDefs from './src/typdefs/course'
-// import unitTypeDefs from './src/typdefs/unit'
-// import userTypeDefs from './src/typdefs/user'
 import typeDefs from './src/typdefs'
+
 import { Course } from './src/models/courses'
 
 dotenv.config()
@@ -23,12 +21,13 @@ mongoose.Promise = global.Promise
 // Build a storage for storing users
 console.log(process.env.TEST_DB || 'prod')
 
+// todo: check the current environment and run a specific db
 mongoose.connect(
   !process.env.TEST_DB
     ? `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/sparked`
-    : `mongodb://${process.env.USER}:${
-        process.env.PASS
-      }@ds157276.mlab.com:57276/${process.env.TEST_DB}`,
+    : `mongodb://${process.env.MONGO_URL}:${
+        process.env.MONGO_PORT
+      }/sparked-test`,
   { useNewUrlParser: true }
 )
 
@@ -39,7 +38,6 @@ const resolvers = mergeResolvers([
   unitResolvers,
   userResolvers,
 ])
-// const typeDefs = mergeTypes([courseTypeDefs, unitTypeDefs, userTypeDefs])
 
 const schema = makeExecutableSchema({
   typeDefs,
