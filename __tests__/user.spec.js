@@ -81,6 +81,6 @@ describe('user resolvers', () => {
     } = _userResponse
     expect(data).toBeTruthy()
     expect(data.login).toBeDefined()
-    expect(errors).toBeNull()
+    expect(errors).toBeUndefined()
   })
 })
