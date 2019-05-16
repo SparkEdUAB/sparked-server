@@ -20,7 +20,11 @@ dotenv.config()
 mongoose.Promise = global.Promise
 
 // Build a storage for storing users
-console.log(process.env.TEST_DB || 'prod')
+console.log(
+  `mongodb://${process.env.USER}:${
+    process.env.PASS
+  }@ds157276.mlab.com:57276/sparked`
+)
 
 mongoose.connect(
   // !process.env.TEST_DB
