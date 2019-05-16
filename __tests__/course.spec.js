@@ -43,6 +43,7 @@ describe('courses resolvers', () => {
     expect(addCourse.name).toBe('Introduction')
     expect(addCourse.createdBy).toBe('olivier')
     expect(addCourse.createdAt).toBe(null)
+    expect(addCourse).toMatchSnapshot()
   })
   test('should query all courses', async () => {
     const response = await axios.post(

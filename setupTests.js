@@ -1,8 +1,8 @@
 import child_process from 'child_process'
 
-afterAll(async () => {
-  console.log('cleaning the db')
-  await child_process.execFile(`${process.env.PWD}/cleanCollections.sh`, [
+beforeAll(async () => {
+  console.log(`cleaning the ${process.env.TEST_DB} db`)
+  await child_process.execFileSync(`${process.env.PWD}/cleanDb.sh`, [
     process.env.TEST_DB || 'sparked',
   ])
 })

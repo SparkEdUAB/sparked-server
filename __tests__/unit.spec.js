@@ -46,6 +46,7 @@ describe('unit resolvers', () => {
     expect(addUnit.name).toBe('Fundamentals')
     expect(addUnit.createdBy).toBe('olivier')
     expect(addUnit.createdAt).toBe(null)
+    expect(addUnit).toMatchSnapshot()
   })
   test('should query all units', async () => {
     const response = await axios.post(

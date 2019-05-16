@@ -1,18 +1,14 @@
 import express from 'express'
 import mongoose from 'mongoose'
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express'
-import { mergeResolvers, mergeTypes } from 'merge-graphql-schemas'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
 // resolvers
-import courseResolvers from './resolvers/course'
-import unitResolvers from './resolvers/unit'
-import userResolvers from './resolvers/user'
+import resolvers from './resolvers'
 
 // typedefs
-import courseTypeDefs from './typdefs/course'
-import unitTypeDefs from './typdefs/unit'
-import userTypeDefs from './typdefs/user'
+import typeDefs from './typdefs'
+
 import { Course } from './models/courses'
 
 dotenv.config()
@@ -26,22 +22,17 @@ console.log(
   }@ds157276.mlab.com:57276/sparked`
 )
 
+// todo: check the current environment and run a specific db
 mongoose.connect(
-  // !process.env.TEST_DB
-  // ?
-  `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/${
-    process.env.TEST_DB
-  }`,
-  //   :
-  // `mongodb://${process.env.USER}:${
-  //   process.env.PASS
-  // }@ds157276.mlab.com:57276/sparked`,
+  !process.env.TEST_DB
+    ? `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/sparked`
+    : `mongodb://${process.env.MONGO_URL}:${
+        process.env.MONGO_PORT
+      }/sparked-test`,
   { useNewUrlParser: true }
 )
 
 const graphQLServer = express()
-
-const typeDefs = mergeTypes([courseTypeDefs, unitTypeDefs, userTypeDefs])
 
 const schema = makeExecutableSchema({
   typeDefs,

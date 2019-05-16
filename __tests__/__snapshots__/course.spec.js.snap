@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`courses resolvers should create a course and return proper data 1`] = `
+Object {
+  "createdAt": null,
+  "createdBy": "olivier",
+  "name": "Introduction",
+}
+`;
