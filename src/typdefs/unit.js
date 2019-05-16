@@ -1,4 +1,4 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express'
 
 const unitTypeDefs = gql`
   scalar Date
@@ -14,6 +14,6 @@ const unitTypeDefs = gql`
     createdAt: Date
     createdBy: String
   }
-`;
+`
 
-export default unitTypeDefs;
+export default unitTypeDefs

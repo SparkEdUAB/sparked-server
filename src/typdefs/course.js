@@ -1,4 +1,4 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express'
 
 const typeDefs = gql`
   # scalar String
@@ -18,6 +18,6 @@ const typeDefs = gql`
     createdAt: String
     createdBy: String
   }
-`;
+`
 
-export default typeDefs;
+export default typeDefs

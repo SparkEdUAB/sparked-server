@@ -27,14 +27,20 @@
     "@babel/plugin-transform-runtime": "^7.4.4",
     "@babel/preset-env": "^7.4.4",
     "axios": "^0.18.0",
+    "babel-eslint": "^10.0.1",
     "babel-jest": "^24.8.0",
     "babel-preset-env": "^1.6.1",
-    "jest": "^24.8.0"
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^4.2.0",
+    "eslint-plugin-prettier": "^3.1.0",
+    "jest": "^24.8.0",
+    "prettier": "^1.17.1"
   },
   "scripts": {
     "start": "nodemon ./index.js --exec babel-node",
     "dev": "TEST_DB=sparked-test  nodemon ./index.js --exec babel-node",
-    "test": "jest --config ./jest.config.js"
+    "test": "jest --config ./jest.config.js",
+    "lint": "eslint ."
   },
   "repository": {
     "type": "git",

@@ -1,4 +1,4 @@
-import mongoose from "mongoose";
+import mongoose from 'mongoose'
 
 export const UnitSchema = mongoose.Schema({
   name: String,
@@ -6,12 +6,12 @@ export const UnitSchema = mongoose.Schema({
   details: {
     courseId: {
       type: String,
-      require: false
-    }
+      require: false,
+    },
   },
   createdAt: Date,
-  createdBy: String
-});
+  createdBy: String,
+})
 
-const Unit = mongoose.model("Units", UnitSchema);
-export { Unit };
+const Unit = mongoose.model('Units', UnitSchema)
+export { Unit }

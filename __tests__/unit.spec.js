@@ -1,13 +1,13 @@
-import axios from "axios";
-import dotenv from "dotenv";
+import axios from 'axios'
+import dotenv from 'dotenv'
 
-dotenv.config();
+dotenv.config()
 
-const token = process.env.TOKEN;
-const url = process.env.URL;
+const token = process.env.TOKEN
+const url = process.env.URL
 
-describe("unit resolvers", () => {
-  test("should return an error when not authenticated", async () => {
+describe('unit resolvers', () => {
+  test('should return an error when not authenticated', async () => {
     const responseData = await axios.post(url, {
       query: `
         query {
@@ -16,17 +16,17 @@ describe("unit resolvers", () => {
             _id
           }
         }
-      `
-    });
+      `,
+    })
     const {
-      data: { data, errors }
-    } = responseData;
+      data: { data, errors },
+    } = responseData
 
-    expect(data.getUnits).toBe(null);
-    expect(errors[0].message).toBe("you must be logged in");
-  });
+    expect(data.getUnits).toBe(null)
+    expect(errors[0].message).toBe('you must be logged in')
+  })
 
-  test("should create a unit and return proper data", async () => {
+  test('should create a unit and return proper data', async () => {
     const unit = await axios.post(url, {
       query: `
           mutation {
@@ -36,18 +36,18 @@ describe("unit resolvers", () => {
               createdBy
             }
           }
-      `
-    });
+      `,
+    })
     const {
       data: {
-        data: { addUnit }
-      }
-    } = await unit;
-    expect(addUnit.name).toBe("Fundamentals");
-    expect(addUnit.createdBy).toBe("olivier");
-    expect(addUnit.createdAt).toBe(null);
-  });
-  test("should query all units", async () => {
+        data: { addUnit },
+      },
+    } = await unit
+    expect(addUnit.name).toBe('Fundamentals')
+    expect(addUnit.createdBy).toBe('olivier')
+    expect(addUnit.createdAt).toBe(null)
+  })
+  test('should query all units', async () => {
     const response = await axios.post(
       url,
       {
@@ -57,26 +57,26 @@ describe("unit resolvers", () => {
                   name
               }
           }
-          `
+          `,
       },
       {
         headers: {
-          authorization: token
-        }
+          authorization: token,
+        },
       }
-    );
-    const { data } = response;
+    )
+    const { data } = response
 
     expect(data).toMatchObject({
       data: {
         getUnits: [
           {
-            name: "Fundamentals"
-          }
-        ]
-      }
-    });
-    expect(data.data).toHaveProperty("getUnits");
-    expect(data.data.getUnits[0].name).toBe("Fundamentals");
-  });
-});
+            name: 'Fundamentals',
+          },
+        ],
+      },
+    })
+    expect(data.data).toHaveProperty('getUnits')
+    expect(data.data.getUnits[0].name).toBe('Fundamentals')
+  })
+})

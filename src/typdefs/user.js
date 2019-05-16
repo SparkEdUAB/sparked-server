@@ -1,4 +1,4 @@
-import { gql } from "apollo-server-express";
+import { gql } from 'apollo-server-express'
 
 const userSchema = gql`
   #   scalar Date
@@ -16,6 +16,6 @@ const userSchema = gql`
     password: String
     createdAt: String
   }
-`;
+`
 
-export default userSchema;
+export default userSchema
