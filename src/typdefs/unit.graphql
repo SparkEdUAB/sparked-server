@@ -3,11 +3,17 @@ type Query {
   getUnits: [Unit]
 }
 type Mutation {
-  addUnit(name: String!, createdBy: String, createdAt: Date): Unit
+  addUnit(
+    name: String!
+    courseId: String!
+    createdBy: String
+    createdAt: Date
+  ): Unit
 }
 type Unit {
   _id: String
   name: String
+  courseId: String
   createdAt: Date
   createdBy: String
 }
