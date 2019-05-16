@@ -5,8 +5,8 @@ cache:
   directories:
     - "node_modules"
 services:
-  - mongodb    
+  - mongodb
 install:
   - npm install
 script:
-  - npm run test
+  - npm run lint
