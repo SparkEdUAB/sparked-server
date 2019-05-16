@@ -3,6 +3,7 @@ import mongoose from 'mongoose'
 export const UnitSchema = mongoose.Schema({
   name: String,
   code: String,
+  courseId: String,
   details: {
     courseId: {
       type: String,

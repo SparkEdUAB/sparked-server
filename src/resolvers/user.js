@@ -9,8 +9,10 @@ const userResolver = {
       return User.find({})
     },
     getUser(root, args, { user }) {
-      console.log(user)
       return User.findOne({ email: user.email })
+    },
+    me(root, args, { user }) {
+      return user
     },
   },
   Mutation: {

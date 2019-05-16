@@ -1,5 +1,6 @@
 import { AuthenticationError } from 'apollo-server-express'
 import { Course } from '../models/courses'
+import { Unit } from '../models/unit'
 
 const resolvers = {
   Query: {
@@ -8,6 +9,12 @@ const resolvers = {
         throw new AuthenticationError('you must be logged in')
       }
       return Course.find({})
+    },
+  },
+  Course: {
+    // funny thing, you have access to the whole course
+    units: course => {
+      return Unit.find({ courseId: course._id })
     },
   },
   Mutation: {

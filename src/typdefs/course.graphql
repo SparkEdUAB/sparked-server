@@ -10,6 +10,7 @@ type Mutation {
 type Course {
   _id: String
   name: String
+  units: [Unit]
   createdAt: String
   createdBy: String
 }

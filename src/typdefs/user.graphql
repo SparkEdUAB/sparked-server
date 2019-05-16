@@ -1,12 +1,14 @@
 type Query {
   allUsers: [User]
   getUser: User
+  me: User
 }
 type Mutation {
   register(email: String!, password: String!): User!
   login(email: String!, password: String!): String!
 }
 type User {
+  _id: String
   email: String
   username: String
   password: String
