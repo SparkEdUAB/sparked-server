@@ -9,22 +9,6 @@
 
 This serves data for the sparked client
 
-**Setup**
-
-You need to set up an .env file at the roor of the project, it should look like the following
-
-```
-TOKEN="thegeneratedtoken"
-URL= "http://localhost:3000/graphiql"
-GRAPHQL_PORT = 3000
-MONGO_PORT = 27017
-MONGO_URL = "localhost"
-dbName = "sparked"
-SECRET = "yoursecretkey"
-USER="user"
-PASS="pass"
-TEST_DB="test"
-```
 
 The following are examples of data of GraphQL queries and mutations
 
@@ -86,3 +70,65 @@ mutation {
   }
 }
 ```
+## Development
+
+**requirements**
+
+- Node ˆv6
+- npm@latest
+- MongoDb
+
+Clone the repo
+
+`git clone https://github.com/OlivierJM/sparked-server.git`  
+`cd sparked-server`
+
+install dependencies
+
+`npm install` or `yarn`
+
+create a file in the root of the project called `.env` and add your contents as follows.
+
+```
+TOKEN="thegeneratedtoken"
+URL= "http://localhost:3000/graphiql"
+GRAPHQL_PORT = 3000
+MONGO_PORT = 27017
+MONGO_URL = "localhost"
+dbName = "sparked"
+SECRET = "yoursecretkey"
+USER="user"
+PASS="pass"
+TEST_DB="test"
+```
+
+
+
+**Running**
+
+`npm dev` or `yarn dev`
+
+**Testing**
+
+`yarn test`
+
+**Contribution**
+
+Fork this repo and clone your forked repo
+
+`git clone https://github.com/your-github-username/sparked-server.git`
+
+Add this repo to your remotes as upstream.
+
+`git remote add upstream https://github.com/SparkEdUAB/sparked-server`
+
+Before pushing anything to your fork, always
+
+`git pull upstream`
+
+> Don't forget to add the .env file mentioned above.
+
+**Note:** Make sure all tests are passing and there are no lint errors before pushing, if you make changes to the code add the tests for that.
+
+Thank you 
+
