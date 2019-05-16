@@ -56,7 +56,6 @@ const authUser = async req => {
     const { user } = await jwt.verify(token, process.env.SECRET)
     req.user = user
     req.isAuth = true
-    console.log(user)
   } catch (error) {
     console.log(error)
   }
