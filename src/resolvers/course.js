@@ -12,7 +12,7 @@ const resolvers = {
     },
   },
   Course: {
-    // funny thing, you have access to the whole
+    // funny thing, you have access to the whole course
     units: course => {
       return Unit.find({ courseId: course._id })
     },
