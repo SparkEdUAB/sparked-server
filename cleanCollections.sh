@@ -6,4 +6,4 @@
 #   echo $coll
 #     mongo sparked-test --eval "db.$coll.drop()"
 # done
-mongo sparked-test --eval "db.dropDatabase()"
+mongo $1 --eval "db.dropDatabase()"
