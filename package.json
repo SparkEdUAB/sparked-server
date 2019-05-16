@@ -43,7 +43,7 @@
     "test": "jest --config ./jest.config.js",
     "lint": "eslint .",
     "heroku-postbuild": "yarn && yarn run build",
-    "build": "babel-node src -d dist --source-maps",
+    "build": "./node_modules/.bin/babel-node src -d dist --source-maps",
     "serve": "node dist/index.js"
   },
   "repository": {
