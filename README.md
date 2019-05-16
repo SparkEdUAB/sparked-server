@@ -1,6 +1,11 @@
 ## sparked-server
 
 [![Build Status](https://travis-ci.com/SparkEdUAB/sparked-server.svg?branch=master)](https://travis-ci.com/SparkEdUAB/sparked-server)
+![GitHub](https://img.shields.io/github/license/Sparkeduab/sparked-server.svg?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/sparkeduab/sparked-server.svg?style=flat-square)
+![David](https://img.shields.io/david/dev/sparkeduab/sparked-server.svg?style=flat-square)
+![GitHub issues](https://img.shields.io/github/issues-raw/sparkeduab/sparked-server.svg?style=flat-square)
+![GitHub pull requests](https://img.shields.io/github/issues-pr/sparkeduab/sparked-server.svg?style=flat-square)
 
 This serves data for the sparked client
 
