@@ -10,9 +10,10 @@ import unitResolvers from './src/resolvers/unit'
 import userResolvers from './src/resolvers/user'
 
 // typedefs
-import courseTypeDefs from './src/typdefs/course'
-import unitTypeDefs from './src/typdefs/unit'
-import userTypeDefs from './src/typdefs/user'
+// import courseTypeDefs from './src/typdefs/course'
+// import unitTypeDefs from './src/typdefs/unit'
+// import userTypeDefs from './src/typdefs/user'
+import typeDefs from './src/typdefs'
 import { Course } from './src/models/courses'
 
 dotenv.config()
@@ -27,7 +28,7 @@ mongoose.connect(
     ? `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/sparked`
     : `mongodb://${process.env.USER}:${
         process.env.PASS
-      }@ds157276.mlab.com:57276/${process.env.TEST_DB} || "sparked"`,
+      }@ds157276.mlab.com:57276/${process.env.TEST_DB}`,
   { useNewUrlParser: true }
 )
 
@@ -38,7 +39,7 @@ const resolvers = mergeResolvers([
   unitResolvers,
   userResolvers,
 ])
-const typeDefs = mergeTypes([courseTypeDefs, unitTypeDefs, userTypeDefs])
+// const typeDefs = mergeTypes([courseTypeDefs, unitTypeDefs, userTypeDefs])
 
 const schema = makeExecutableSchema({
   typeDefs,
