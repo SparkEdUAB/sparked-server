@@ -23,11 +23,12 @@ mongoose.Promise = global.Promise
 console.log(process.env.TEST_DB || 'prod')
 
 mongoose.connect(
-  !process.env.TEST_DB
-    ? `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/sparked`
-    : `mongodb://${process.env.USER}:${
-        process.env.PASS
-      }@ds157276.mlab.com:57276/${process.env.TEST_DB} || "sparked"`,
+  // !process.env.TEST_DB
+  //   ? `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/sparked`
+  //   :
+  `mongodb://${process.env.USER}:${
+    process.env.PASS
+  }@ds157276.mlab.com:57276/sparked`,
   { useNewUrlParser: true }
 )
 
