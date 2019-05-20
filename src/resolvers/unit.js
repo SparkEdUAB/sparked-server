@@ -5,9 +5,6 @@ import { Topic } from '../models/topic'
 const unitResolvers = {
   Query: {
     getUnits(root, args, { user }) {
-      if (!user) {
-        throw new AuthenticationError('you must be logged in')
-      }
       return Unit.find({ createdBy: user._id })
     },
   },
@@ -18,6 +15,9 @@ const unitResolvers = {
   },
   Mutation: {
     addTopic(root, args, { user }) {
+      if (!user) {
+        throw new AuthenticationError('you must be logged in')
+      }
       let unit = new Unit()
       unit.name = args.name
       unit.courseId = args.courseId

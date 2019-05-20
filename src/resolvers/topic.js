@@ -6,9 +6,12 @@ const topicResolvers = {
       return Topic.find({})
     },
   },
-
+  // add more mutations here
   Mutation: {
     addTopic(root, args, { user }) {
+      if (!user) {
+        throw new AuthenticationError('you must be logged in')
+      }
       const topic = new Topic()
       topic.name = args.name
       topic.unit = args.unit // supposed to be the name for the unit
