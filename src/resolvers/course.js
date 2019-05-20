@@ -18,11 +18,11 @@ const resolvers = {
     },
   },
   Mutation: {
-    addCourse(root, args, context) {
+    addCourse(root, args, { user }) {
       let course = new Course()
       course.name = args.name
-      course.createdAt = args.createdAt
-      course.createdBy = args.createdBy
+      course.createdAt = new Date()
+      course.createdBy = user._id
       return course.save()
     },
     deleteCourse(root, args) {

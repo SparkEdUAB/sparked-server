@@ -1,0 +1,19 @@
+scalar Date
+type Query {
+  getTopics: [Topic]
+}
+type Mutation {
+  addTopic(
+    name: String!
+    unitId: String!
+    createdBy: String
+    createdAt: Date
+  ): Topic
+}
+type Topic {
+  _id: String
+  name: String
+  unitId: String
+  createdAt: Date
+  createdBy: String
+}

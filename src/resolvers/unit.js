@@ -1,5 +1,6 @@
 import { AuthenticationError } from 'apollo-server-express'
 import { Unit } from '../models/unit'
+import { Topic } from '../models/topic'
 
 const unitResolvers = {
   Query: {
@@ -10,14 +11,18 @@ const unitResolvers = {
       return Unit.find({ createdBy: user._id })
     },
   },
+  Unit: {
+    topics: unit => {
+      return Topic.find({ unitId: unit.unitId })
+    },
+  },
   Mutation: {
-    addUnit(root, args, { user }) {
+    addTopic(root, args, { user }) {
       let unit = new Unit()
       unit.name = args.name
       unit.courseId = args.courseId
-      unit.createdAt = args.createdAt
+      unit.createdAt = new Date()
       unit.createdBy = user._id
-      // unit.createdA
       return unit.save()
     },
   },
