@@ -5,9 +5,6 @@ import { Unit } from '../models/unit'
 const resolvers = {
   Query: {
     getCourses(root, args, { user }) {
-      if (!user) {
-        throw new AuthenticationError('you must be logged in')
-      }
       return Course.find({})
     },
   },
@@ -18,17 +15,26 @@ const resolvers = {
     },
   },
   Mutation: {
-    addCourse(root, args, context) {
+    addCourse(root, args, { user }) {
+      if (!user) {
+        throw new AuthenticationError('you must be logged in')
+      }
       let course = new Course()
       course.name = args.name
-      course.createdAt = args.createdAt
-      course.createdBy = args.createdBy
+      course.createdAt = new Date()
+      course.createdBy = user._id
       return course.save()
     },
-    deleteCourse(root, args) {
+    deleteCourse(root, args, { user }) {
+      if (!user) {
+        throw new AuthenticationError('you must be logged in')
+      }
       return Course.deleteOne({ _id: args.id })
     },
-    updateCourse(root, args) {
+    updateCourse(root, args, { user }) {
+      if (!user) {
+        throw new AuthenticationError('you must be logged in')
+      }
       let _tempCource = Object.assign({}, args)
       delete _tempCource.id
       return Course.updateOne({ _id: args.id }, { $set: _tempCource })

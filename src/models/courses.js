@@ -1,4 +1,4 @@
-let mongoose = require('mongoose')
+import mongoose from 'mongoose'
 
 const CourseSchema = mongoose.Schema({
   name: String,

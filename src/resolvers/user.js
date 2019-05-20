@@ -5,7 +5,11 @@ import User from '../models/user'
 
 const userResolver = {
   Query: {
-    allUsers() {
+    allUsers(root, args, { user }) {
+      // to see other users you should be logged in
+      if (!user) {
+        throw new AuthenticationError('you must be logged in')
+      }
       return User.find({})
     },
     getUser(root, args, { user }) {

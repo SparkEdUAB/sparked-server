@@ -14,6 +14,7 @@ type Unit {
   _id: String
   name: String
   courseId: String
+  topics: [Topic]
   createdAt: Date
   createdBy: String
 }
