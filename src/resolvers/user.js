@@ -42,7 +42,8 @@ const userResolver = {
           user: pick(user, ['_id', 'email']),
         },
         SECRET,
-        { expiresIn: '1w' }
+        // this token will last for a year, this should be adjusted accordingly
+        { expiresIn: '1y' }
       )
       return token
     },

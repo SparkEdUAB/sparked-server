@@ -1,0 +1,12 @@
+scalar Upload
+type Query {
+  uploads: [File]
+}
+type File {
+  filename: String!
+  mimetype: String
+}
+
+type Mutation {
+  singleUpload(file: Upload): File!
+}
