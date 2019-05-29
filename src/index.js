@@ -19,11 +19,8 @@ mongoose.Promise = global.Promise
 
 // todo: check the current environment and run a specific db
 mongoose.connect(
-  !process.env.TEST_DB
-    ? `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/sparked`
-    : `mongodb://${process.env.MONGO_URL}:${
-        process.env.MONGO_PORT
-      }/sparked-test`,
+  `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/${process.env
+    .TEST_DB || 'sparked'}`,
   { useNewUrlParser: true }
 )
 

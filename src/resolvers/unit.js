@@ -14,10 +14,11 @@ const unitResolvers = {
     },
   },
   Mutation: {
-    addTopic(root, args, { user }) {
+    addUnit(root, args, { user }) {
       if (!user) {
         throw new AuthenticationError('you must be logged in')
       }
+
       let unit = new Unit()
       unit.name = args.name
       unit.courseId = args.courseId
