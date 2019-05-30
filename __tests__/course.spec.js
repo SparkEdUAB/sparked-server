@@ -4,7 +4,7 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 describe('courses resolvers', () => {
-  test('should not query courses when not authenticated', async () => {
+  test('should query courses even when not authenticated', async () => {
     const responseData = await axios.post(process.env.URL, {
       query: `
         query {
@@ -19,15 +19,13 @@ describe('courses resolvers', () => {
       data: { data, errors },
     } = responseData
 
-    expect(data.getCourses).toBe(null)
-    expect(errors[0].message).toBe('you must be logged in')
+    expect(data.getCourses).toBeDefined()
   })
-
-  test('should create a course and return proper data', async () => {
-    const course = await axios.post(process.env.URL, {
+  test('should not add courses when not authenticated', async () => {
+    const createCourse = await axios.post(process.env.URL, {
       query: `
           mutation {
-            addCourse(name: "Introduction", createdBy:"olivier") {
+            addCourse(name: "Another Introduction", createdBy:"olivier") {
               name
               createdAt
               createdBy
@@ -36,13 +34,40 @@ describe('courses resolvers', () => {
       `,
     })
     const {
+      data: { data, errors },
+    } = createCourse
+    expect(data.addCourse).toBe(null)
+    expect(errors[0].message).toBe('you must be logged in')
+  })
+
+  test('should create a course and return proper data', async () => {
+    const course = await axios.post(
+      process.env.URL,
+      {
+        query: `
+          mutation {
+            addCourse(name: "Another Introduction") {
+              name
+              createdAt
+              createdBy
+            }
+          }
+      `,
+      },
+      {
+        headers: {
+          authorization: process.env.TOKEN,
+        },
+      }
+    )
+    const {
       data: {
         data: { addCourse },
       },
+      data,
     } = await course
-    expect(addCourse.name).toBe('Introduction')
-    expect(addCourse.createdBy).toBe('olivier')
-    expect(addCourse.createdAt).toBe(null)
+    // console.log(data)
+    expect(addCourse.name).toBe('Another Introduction')
     expect(addCourse).toMatchSnapshot()
   })
   test('should query all courses', async () => {
@@ -63,18 +88,15 @@ describe('courses resolvers', () => {
         },
       }
     )
-    const { data } = response
+    const {
+      data: { data },
+    } = response
+    const newItem = data.getCourses[data.getCourses.length - 1]
 
-    expect(data).toMatchObject({
-      data: {
-        getCourses: [
-          {
-            name: 'Introduction',
-          },
-        ],
-      },
+    expect(newItem).toMatchObject({
+      name: 'Another Introduction',
     })
-    expect(data.data).toHaveProperty('getCourses')
-    expect(data.data.getCourses[0].name).toBe('Introduction')
+    expect(data).toHaveProperty('getCourses')
+    expect(data.getCourses[0].name).toBeDefined()
   })
 })

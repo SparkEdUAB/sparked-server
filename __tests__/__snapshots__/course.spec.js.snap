@@ -2,8 +2,8 @@
 
 exports[`courses resolvers should create a course and return proper data 1`] = `
 Object {
-  "createdAt": null,
-  "createdBy": "olivier",
-  "name": "Introduction",
+  "createdAt": "1559203783917",
+  "createdBy": "5cef8859d21cb0007e2893bd",
+  "name": "Another Introduction",
 }
 `;
