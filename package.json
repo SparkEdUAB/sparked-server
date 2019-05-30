@@ -13,7 +13,7 @@
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.4",
     "merge-graphql-schemas": "^1.5.8",
-    "mongoose": "^5.5.8",
+    "mongoose": "^5.5.11",
     "node-fetch": "^2.6.0"
   },
   "devDependencies": {
