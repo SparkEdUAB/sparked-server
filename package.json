@@ -14,7 +14,7 @@
     "lodash": "^4.17.4",
     "merge-graphql-schemas": "^1.5.8",
     "mongoose": "^5.5.8",
-    "node-fetch": "^1.7.3"
+    "node-fetch": "^2.6.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
