@@ -9,6 +9,8 @@ type Mutation {
     createdBy: String
     createdAt: Date
   ): Unit
+  deleteUnit(id: String!): Unit
+  updateUnit(id: String, name: String): Unit
 }
 type Unit {
   _id: String

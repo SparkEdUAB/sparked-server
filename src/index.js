@@ -49,7 +49,7 @@ const authUser = async req => {
     req.user = user
     req.isAuth = true
   } catch (error) {
-    console.log(error)
+    req.isAuth = false
   }
   req.next()
 }

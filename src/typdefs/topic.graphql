@@ -9,6 +9,8 @@ type Mutation {
     createdBy: String
     createdAt: Date
   ): Topic
+  deleteTopic(id: String!): Topic
+  updateTopic(id: String, name: String): Topic
 }
 type Topic {
   _id: String
