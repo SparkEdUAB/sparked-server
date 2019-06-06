@@ -26,6 +26,24 @@ const unitResolvers = {
       unit.createdBy = user._id
       return unit.save()
     },
+    deleteUnit(root, args, { user }) {
+      if (!user) {
+        throw new AuthenticationError('You must be logged in')
+      }
+      // todo before deleting, check if it is found
+      return Unit.deleteOne({ _id: args.id })
+    },
+
+    // add a mutation for deleting the topic
+    updateUnit(root, args, { user }) {
+      if (!user) {
+        throw new AuthenticationError('You must be logged in')
+      }
+      // todo before trying to update, check if it is found
+      let _tempUnit = Object.assign({}, args)
+      delete _tempUnit.id
+      return Unit.updateOne({ _id: args.id }, { $set: _tempUnit })
+    },
   },
 }
 
