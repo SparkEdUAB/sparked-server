@@ -20,9 +20,12 @@ const userResolver = {
     },
   },
   Mutation: {
-    async register(root, { email, password }) {
+    async register(root, { email, password, name, gender, roles }) {
       let user = new User()
       user.email = email
+      user.name = name
+      user.gender = gender
+      user.roles = roles
       user.password = await bcrypt.hash(password, 12)
 
       return user.save()
