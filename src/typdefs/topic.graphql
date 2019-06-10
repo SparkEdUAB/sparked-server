@@ -6,6 +6,7 @@ type Mutation {
   addTopic(
     name: String!
     unitId: String!
+    courseId: String!
     createdBy: String
     createdAt: Date
   ): Topic
@@ -16,6 +17,7 @@ type Topic {
   _id: String
   name: String
   unitId: String
+  courseId: String
   createdAt: Date
   createdBy: String
 }

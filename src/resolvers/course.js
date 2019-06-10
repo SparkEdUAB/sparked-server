@@ -1,6 +1,7 @@
 import { AuthenticationError } from 'apollo-server-express'
 import { Course } from '../models/courses'
 import { Unit } from '../models/unit'
+import { Topic } from '../models/topic'
 
 const resolvers = {
   Query: {
@@ -12,6 +13,9 @@ const resolvers = {
     // funny thing, you have access to the whole course
     units: course => {
       return Unit.find({ courseId: course._id })
+    },
+    topics: course => {
+      return Topic.find({ courseId: course._id })
     },
   },
   Mutation: {

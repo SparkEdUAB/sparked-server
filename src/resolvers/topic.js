@@ -17,6 +17,7 @@ const topicResolvers = {
       topic.name = args.name
       topic.unit = args.unit // supposed to be the name for the unit
       topic.unitId = args.unitId
+      topic.courseId = args.courseId
       topic.createdAt = new Date()
       topic.createdBy = user._id
       return topic.save()
