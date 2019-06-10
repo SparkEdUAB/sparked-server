@@ -11,7 +11,7 @@ const topicResolvers = {
   Mutation: {
     addTopic(root, args, { user }) {
       if (!user) {
-        throw new AuthenticationError('You must be logged in')
+        throw new AuthenticationError('You must be logged in to add a topic')
       }
       const topic = new Topic()
       topic.name = args.name
@@ -24,7 +24,7 @@ const topicResolvers = {
 
     deleteTopic(root, args, { user }) {
       if (!user) {
-        throw new AuthenticationError('You must be logged in')
+        throw new AuthenticationError('You must be logged in to delete a topic')
       }
       // todo before deleting, check if it is found
       return Topic.deleteOne({ _id: args.id })
@@ -33,7 +33,7 @@ const topicResolvers = {
     // add a mutation for deleting the topic
     updateTopic(root, args, { user }) {
       if (!user) {
-        throw new AuthenticationError('You must be logged in')
+        throw new AuthenticationError('You must be logged in to update a topic')
       }
       // todo before trying to update, check if it is found
       let _tempTopic = Object.assign({}, args)

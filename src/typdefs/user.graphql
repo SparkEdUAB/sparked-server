@@ -10,7 +10,6 @@ type Mutation {
     name: String!
     gender: String
     roles: [String]
-    status: Boolean
   ): User!
   login(email: String!, password: String!): String!
 }

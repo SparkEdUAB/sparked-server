@@ -17,7 +17,7 @@ const resolvers = {
   Mutation: {
     addCourse(root, args, { user }) {
       if (!user) {
-        throw new AuthenticationError('you must be logged in')
+        throw new AuthenticationError('you must be logged in to add a course')
       }
       let course = new Course()
       course.name = args.name
@@ -27,13 +27,17 @@ const resolvers = {
     },
     deleteCourse(root, args, { user }) {
       if (!user) {
-        throw new AuthenticationError('you must be logged in')
+        throw new AuthenticationError(
+          'you must be logged in to delete a course'
+        )
       }
       return Course.deleteOne({ _id: args.id })
     },
     updateCourse(root, args, { user }) {
       if (!user) {
-        throw new AuthenticationError('you must be logged in')
+        throw new AuthenticationError(
+          'you must be logged in to update a course'
+        )
       }
       let _tempCource = Object.assign({}, args)
       delete _tempCource.id
