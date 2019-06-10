@@ -11,6 +11,7 @@ type Course {
   _id: String
   name: String
   units: [Unit]
+  topics: [Topic]
   createdAt: String
   createdBy: String
 }
