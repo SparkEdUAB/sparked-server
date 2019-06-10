@@ -16,7 +16,7 @@ const unitResolvers = {
   Mutation: {
     addUnit(root, args, { user }) {
       if (!user) {
-        throw new AuthenticationError('you must be logged in')
+        throw new AuthenticationError('you must be logged in to add a unit')
       }
 
       let unit = new Unit()
@@ -28,7 +28,7 @@ const unitResolvers = {
     },
     deleteUnit(root, args, { user }) {
       if (!user) {
-        throw new AuthenticationError('You must be logged in')
+        throw new AuthenticationError('You must be logged in to delete a unit')
       }
       // todo before deleting, check if it is found
       return Unit.deleteOne({ _id: args.id })
@@ -37,7 +37,7 @@ const unitResolvers = {
     // add a mutation for deleting the topic
     updateUnit(root, args, { user }) {
       if (!user) {
-        throw new AuthenticationError('You must be logged in')
+        throw new AuthenticationError('You must be logged in to update a unit')
       }
       // todo before trying to update, check if it is found
       let _tempUnit = Object.assign({}, args)
