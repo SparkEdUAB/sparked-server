@@ -1,4 +1,4 @@
-import { AuthenticationError } from 'apollo-server-express'
+import { AuthenticationError, ApolloError } from 'apollo-server-express'
 import { Unit } from '../models/unit'
 import { Topic } from '../models/topic'
 
@@ -31,6 +31,7 @@ const unitResolvers = {
         throw new AuthenticationError('You must be logged in to delete a unit')
       }
       // todo before deleting, check if it is found
+
       return Unit.deleteOne({ _id: args.id })
     },
 
@@ -39,12 +40,31 @@ const unitResolvers = {
       if (!user) {
         throw new AuthenticationError('You must be logged in to update a unit')
       }
-      // todo before trying to update, check if it is found
       let _tempUnit = Object.assign({}, args)
+
+      isItemFound(Unit, args.id)
+        .then(() => {
+          return Unit.updateOne({ _id: args.id }, { $set: _tempUnit })
+        })
+        .catch(err => {
+          throw new ApolloError(err.message)
+        })
+      // todo before trying to update, check if it is found
       delete _tempUnit.id
-      return Unit.updateOne({ _id: args.id }, { $set: _tempUnit })
     },
   },
+}
+
+export function isItemFound(collection, id) {
+  return new Promise((resolve, reject) => {
+    collection.findOne({ _id: id }, (err, item) => {
+      if (err) {
+        reject(err)
+      } else {
+        resolve(item)
+      }
+    })
+  })
 }
 
 export default unitResolvers

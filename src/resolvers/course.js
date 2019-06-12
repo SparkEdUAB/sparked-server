@@ -44,6 +44,7 @@ const resolvers = {
         )
       }
       let _tempCource = Object.assign({}, args)
+
       delete _tempCource.id
       return Course.updateOne({ _id: args.id }, { $set: _tempCource })
     },
