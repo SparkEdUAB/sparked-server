@@ -1,3 +1,4 @@
+/* eslint-disable */
 import express from 'express'
 import mongoose from 'mongoose'
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express'
@@ -62,7 +63,6 @@ graphQLServer.get('/courses', (req, res, next) => {
   Course.find({}).exec((_err, _res) => res.json(_res))
 })
 
-// eslint-disable-next-line
 graphQLServer.listen(process.env.GRAPHQL_PORT, () =>
   console.log(
     `GraphiQL is now running on http://localhost:${
