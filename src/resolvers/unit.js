@@ -49,7 +49,6 @@ const unitResolvers = {
         .catch(err => {
           throw new ApolloError(err.message)
         })
-      // todo before trying to update, check if it is found
       delete _tempUnit.id
     },
   },
