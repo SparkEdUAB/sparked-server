@@ -1,3 +1,4 @@
+/* eslint-disable */
 import express from 'express'
 import mongoose from 'mongoose'
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express'
