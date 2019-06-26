@@ -1,10 +1,16 @@
 import { AuthenticationError } from 'apollo-server-express'
 import { Topic } from '../models/topic'
+import { Resource } from '../models/resource'
 
 const topicResolvers = {
   Query: {
     getTopics(root, args, context) {
       return Topic.find({})
+    },
+  },
+  Topic: {
+    resources: topic => {
+      return Resource.find({ topicId: topic.topicId })
     },
   },
   // add more mutations here

@@ -17,6 +17,7 @@ type Topic {
   _id: String
   name: String
   unitId: String
+  resources: [File]
   courseId: String
   createdAt: Date
   createdBy: String
