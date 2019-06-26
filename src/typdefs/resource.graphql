@@ -5,6 +5,7 @@ type Query {
 type File {
   filename: String!
   mimetype: String
+  topicId: String
 }
 
 type Mutation {
