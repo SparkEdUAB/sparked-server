@@ -8,7 +8,7 @@
 ![GitHub pull requests](https://img.shields.io/github/issues-pr/sparkeduab/sparked-server.svg?style=flat-square)
 
 This is an initial graph representation of sparked-server
-![graph representation ](sparked-server.png)
+![graph representation ](gr-updated.png)
 The above graph is initial and doesn't contain all data, this is likely to be updated.
 
 The following are examples of data of GraphQL queries and mutations
