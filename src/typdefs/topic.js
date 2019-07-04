@@ -1,7 +1,6 @@
 import { gql } from 'apollo-server-express'
 
 const topicDefs = gql`
-  scalar Date
   type Query {
     getTopics: [Topic]
   }
@@ -11,7 +10,7 @@ const topicDefs = gql`
       unitId: String!
       courseId: String!
       createdBy: String
-      createdAt: Date
+      createdAt: String
     ): Topic
     deleteTopic(id: String!): Topic
     updateTopic(id: String, name: String): Topic
@@ -22,7 +21,7 @@ const topicDefs = gql`
     unitId: String
     resources: [File]
     courseId: String
-    createdAt: Date
+    createdAt: String
     createdBy: String
   }
 `
