@@ -36,7 +36,7 @@ stages:
     - script: |
         npm install
         npm run build
-      displayName: 'npm install, build and test'
+      displayName: 'npm install, build'
       
     - task: ArchiveFiles@2
       displayName: 'Archive files'
@@ -79,4 +79,4 @@ stages:
               appName: $(webAppName)
               runtimeStack: 'NODE|10.10'
               package: $(System.ArtifactsDirectory)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run prod'
+              startUpCommand: 'npm run serve'
