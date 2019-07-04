@@ -34,8 +34,7 @@ stages:
 
     - script: |
         npm install
-        npm run build --if-present
-        npm run test --if-present
+        npm run build
       displayName: 'npm install, build and test'
       
     - task: ArchiveFiles@2
@@ -79,4 +78,4 @@ stages:
               appName: $(webAppName)
               runtimeStack: 'NODE|10.10'
               package: $(System.ArtifactsDirectory)/drop/$(Build.BuildId).zip
-              startUpCommand: 'npm run start'
+              startUpCommand: 'npm run prod'
