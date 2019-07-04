@@ -15,7 +15,8 @@
     "lodash": "^4.17.4",
     "merge-graphql-schemas": "^1.5.8",
     "mongoose": "^5.6.2",
-    "node-fetch": "^2.6.0"
+    "node-fetch": "^2.6.0",
+    "rimraf": "^2.6.3"
   },
   "devDependencies": {
     "@babel/cli": "^7.4.4",
@@ -35,12 +36,14 @@
   },
   "scripts": {
     "start": "nodemon ./src/index.js --exec babel-node",
-    "dev": "nodemon ./src/index.js --exec babel-node",
+    "dev": "NODE_ENV=development nodemon ./src/index.js --exec babel-node",
     "test": "jest --config ./jest.config.js",
     "lint": "eslint .",
     "heroku-postbuild": "yarn && yarn run build",
-    "build": "./node_modules/.bin/babel-node src -d dist --source-maps",
-    "serve": "node dist/index.js"
+    "build": "babel ./src --out-dir dist",
+    "prod": "NODE_ENV=production npm-run-all clean build serve",
+    "serve": "node dist/index.js",
+    "clean": "rimraf dist"
   },
   "repository": {
     "type": "git",
