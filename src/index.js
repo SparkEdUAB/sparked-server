@@ -63,10 +63,7 @@ graphQLServer.get('/courses', (req, res, next) => {
   Course.find({}).exec((_err, _res) => res.json(_res))
 })
 
-graphQLServer.listen(process.env.GRAPHQL_PORT, () =>
-  console.log(
-    `GraphiQL is now running on http://localhost:${
-      process.env.GRAPHQL_PORT
-    }/graphiql`
-  )
+const port = process.env.NODE_ENV === 'production' ? 80 : 3000
+graphQLServer.listen(port, () =>
+  console.log(`GraphiQL is now running on http://localhost:${port}/graphiql`)
 )

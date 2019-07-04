@@ -42,7 +42,7 @@
     "heroku-postbuild": "yarn && yarn run build",
     "build": "babel ./src --out-dir dist",
     "prod": "NODE_ENV=production npm-run-all clean build serve",
-    "serve": "node dist/index.js",
+    "serve": "NODE_ENV=production node dist/index.js",
     "clean": "rimraf dist"
   },
   "repository": {
