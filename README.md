@@ -1,6 +1,8 @@
 ## sparked-server
 
 [![Build Status](https://travis-ci.com/SparkEdUAB/sparked-server.svg?branch=master)](https://travis-ci.com/SparkEdUAB/sparked-server)
+[![Build Status](https://dev.azure.com/Manolivier930767/SparkEd/_apis/build/status/sparked-srv%20-%20CI?branchName=master)](https://dev.azure.com/Manolivier930767/SparkEd/_build/latest?definitionId=3&branchName=master)
+[![Build Status](https://dev.azure.com/Manolivier930767/SparkEd/_apis/build/status/sparked-srv%20-%20CI?branchName=master&jobName=Build)](https://dev.azure.com/Manolivier930767/SparkEd/_build/latest?definitionId=3&branchName=master)
 ![GitHub](https://img.shields.io/github/license/Sparkeduab/sparked-server.svg?style=flat-square)
 ![GitHub repo size](https://img.shields.io/github/repo-size/sparkeduab/sparked-server.svg?style=flat-square)
 ![David](https://img.shields.io/david/dev/sparkeduab/sparked-server.svg?style=flat-square)
