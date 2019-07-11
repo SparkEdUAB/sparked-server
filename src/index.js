@@ -40,6 +40,9 @@ const server = new ApolloServer({
       SECRET: process.env.SECRET,
     }
   },
+  // temporaly allow the playground in production 
+  introspection: true,
+  playground: true,
 })
 
 const authUser = async req => {
