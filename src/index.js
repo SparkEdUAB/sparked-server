@@ -18,10 +18,10 @@ mongoose.Promise = global.Promise
 
 // Build a storage for storing users
 
+// mongodb://<dbuser>:<dbpassword>@ds157276.mlab.com:57276/sparked-test
 // todo: check the current environment and run a specific db
 mongoose.connect(
-  `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/${process.env
-    .TEST_DB || 'sparked'}`,
+  `mongodb://${process.env.USER}:${process.env.PASS}@ds157276.mlab.com:57276/sparked-test`,
   { useNewUrlParser: true }
 )
 
