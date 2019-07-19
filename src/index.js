@@ -20,9 +20,10 @@ mongoose.Promise = global.Promise
 
 // todo: check the current environment and run a specific db
 mongoose.connect(
-  `mongodb://${process.env.MONGO_URL}:${process.env.MONGO_PORT}/${process.env
-    .TEST_DB || 'sparked'}`,
-  { useNewUrlParser: true }
+  `mongodb://sparked-test:${
+    process.env.KEY
+  }%3D%3D@sparked-test.documents.azure.com:10255/?ssl=true`
+  // { useNewUrlParser: true }
 )
 
 const graphQLServer = express()
@@ -40,7 +41,7 @@ const server = new ApolloServer({
       SECRET: process.env.SECRET,
     }
   },
-  // temporaly allow the playground in production 
+  // temporaly allow the playground in production
   introspection: true,
   playground: true,
 })

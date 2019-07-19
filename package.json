@@ -42,7 +42,7 @@
     "lint": "eslint .",
     "heroku-postbuild": "yarn && yarn run build",
     "build": "babel ./src --out-dir dist",
-    "prod": "NODE_ENV=production npm-run-all clean build serve",
+    "prod": "NODE_ENV=production npm run clean && npm run build && npm run serve",
     "serve": "NODE_ENV=production node dist/index.js",
     "clean": "rimraf dist"
   },
