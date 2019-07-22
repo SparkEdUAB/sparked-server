@@ -3,6 +3,9 @@
   "version": "0.0.1",
   "description": "a server for sparked",
   "main": "index.js",
+    "engines": {
+    "node": "10.x.0"
+  },
   "dependencies": {
     "@babel/runtime": "^7.5.1",
     "apollo-server-express": "^2.7.0",
@@ -44,6 +47,7 @@
     "build": "babel ./src --out-dir dist",
     "prod": "NODE_ENV=production npm run clean && npm run build && npm run serve",
     "serve": "NODE_ENV=production node dist/index.js",
+    "heroku-postbuild": "NODE_ENV=production node dist/index.js",
     "clean": "rimraf dist"
   },
   "repository": {
