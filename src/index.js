@@ -18,13 +18,13 @@ mongoose.Promise = global.Promise
 
 // Build a storage for storing users
 
-// mongodb://<dbuser>:<dbpassword>@ds157276.mlab.com:57276/sparked-test
+//<dbuser>:<dbpassword>@ds157276.mlab.com:57276/sparked-test
 // todo: check the current environment and run a specific db
 mongoose.connect(
-  `mongodb://sparked-test:${
-    process.env.KEY
-  }%3D%3D@sparked-test.documents.azure.com:10255/?ssl=true`
-  // { useNewUrlParser: true }
+  `mongodb://${process.env.USER}:${
+    process.env.PASS
+  }@ds157276.mlab.com:57276/sparked-test`,
+  { useNewUrlParser: true }
 )
 
 const graphQLServer = express()
