@@ -1,0 +1,34 @@
+{
+  "addons": [
+
+  ],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "description": "a graphql server for SparkEd",
+  "env": {
+    "KEY": {
+      "required": true
+    },
+    "PASS": {
+      "required": true
+    },
+    "SECRET": {
+      "required": true
+    },
+    "TEST_DB": {
+      "required": true
+    },
+    "USER": {
+      "required": true
+    }
+  },
+  "formation": {
+  },
+  "name": "sparked-server",
+  "scripts": {
+  },
+  "stack": "heroku-18"
+}
