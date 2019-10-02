@@ -29,14 +29,14 @@ const userResolver = {
       user.role = role
       user.password = await bcrypt.hash(password, 12)
 
+      // check if the user already exist
+      const _user = await User.findOne({ email })
+      if (_user) {
+        throw new Error(`${email} already exist`)
+      }
       // check if the user is the first then grant them admin rights
       const users = await User.find({})
-      if (users.length === 0) {
-        user.role = 'admin'
-      }
-      user.role = 'student'
-      console.log(user)
-
+      user.role = !users.length ? 'admin' : 'student'
       return user.save()
     },
     async login(root, { email, password }, { SECRET }) {
