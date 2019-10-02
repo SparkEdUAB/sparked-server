@@ -12,7 +12,7 @@ const userDefs = gql`
       password: String!
       name: String!
       gender: String
-      roles: [String]
+      role: String
     ): User!
     login(email: String!, password: String!): String!
   }
@@ -20,7 +20,7 @@ const userDefs = gql`
     _id: String
     name: String
     gender: String
-    roles: [String]
+    role: [String]
     status: Boolean
     email: String
     username: String

@@ -35,7 +35,12 @@ const resolvers = {
           'you must be logged in to delete a course'
         )
       }
-      return Course.deleteOne({ _id: args.id })
+      // Course.del
+      console.log(args)
+
+      return Course.deleteMany({ _id: { $in: args.ids } })
+
+      // return Course.deleteOne({ _id: args.id })
     },
     updateCourse(root, args, { user }) {
       if (!user) {

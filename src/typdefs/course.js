@@ -7,7 +7,7 @@ const courseDefs = gql`
   type Mutation {
     # A mutation to add a new channel to the list of channels
     addCourse(name: String!, createdAt: String, createdBy: String): Course
-    deleteCourse(id: String!): Course
+    deleteCourse(ids: [String]!): Course
     updateCourse(id: String!, name: String): Course
   }
   type Course {
