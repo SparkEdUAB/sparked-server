@@ -1,5 +1,6 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
+import { AuthenticationError } from 'apollo-server-express'
 import pick from 'lodash/pick'
 import User from '../models/user'
 
@@ -20,13 +21,21 @@ const userResolver = {
     },
   },
   Mutation: {
-    async register(root, { email, password, name, gender, roles }) {
+    async register(root, { email, password, name, gender, role }) {
       let user = new User()
       user.email = email
       user.name = name
       user.gender = gender
-      user.roles = roles
+      user.role = role
       user.password = await bcrypt.hash(password, 12)
+
+      // check if the user is the first then grant them admin rights
+      const users = await User.find({})
+      if (users.length === 0) {
+        user.role = 'admin'
+      }
+      user.role = 'student'
+      console.log(user)
 
       return user.save()
     },
@@ -37,7 +46,7 @@ const userResolver = {
       }
       const isValid = await bcrypt.compare(password, user.password)
       if (!isValid) {
-        throw new Error('Incorrect password ')
+        throw new AuthenticationError('Incorrect password ')
       }
       //   sign in the user
       const token = await jwt.sign(

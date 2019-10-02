@@ -20,12 +20,9 @@ mongoose.Promise = global.Promise
 
 //<dbuser>:<dbpassword>@ds157276.mlab.com:57276/sparked-test
 // todo: check the current environment and run a specific db
-mongoose.connect(
-  `mongodb://${process.env.USER}:${
-    process.env.PASS
-  }@ds157276.mlab.com:57276/sparked-test`,
-  { useNewUrlParser: true }
-)
+mongoose.connect('mongodb://127.0.0.1:27017/sparked-test', {
+  useNewUrlParser: true,
+})
 
 const graphQLServer = express()
 
@@ -49,7 +46,6 @@ const server = new ApolloServer({
 
 const authUser = async req => {
   const token = await req.headers['authorization']
-
   try {
     const { user } = await jwt.verify(token, process.env.SECRET)
     req.user = user
