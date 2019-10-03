@@ -20,7 +20,7 @@ const userDefs = gql`
     _id: String
     name: String
     gender: String
-    role: [String]
+    role: String
     status: Boolean
     email: String
     username: String
