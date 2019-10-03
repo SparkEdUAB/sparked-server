@@ -11,6 +11,7 @@ import resolvers from './resolvers'
 import typeDefs from './typdefs'
 
 import { Course } from './models/courses'
+import env from '../configs/env.json'
 
 dotenv.config()
 
@@ -20,9 +21,12 @@ mongoose.Promise = global.Promise
 
 //<dbuser>:<dbpassword>@ds157276.mlab.com:57276/sparked-test
 // todo: check the current environment and run a specific db
-mongoose.connect('mongodb://127.0.0.1:27017/sparked-test', {
-  useNewUrlParser: true,
-})
+mongoose.connect(
+  `mongodb://${env.USER.value}:${
+    env.PASS.value
+  }@ds157276.mlab.com:57276/sparked-test`,
+  { useNewUrlParser: true }
+)
 
 const graphQLServer = express()
 
@@ -36,7 +40,7 @@ const server = new ApolloServer({
     const _user = req.user
     return {
       user: _user,
-      SECRET: process.env.SECRET,
+      SECRET: env.SECRET.value,
     }
   },
   // temporaly allow the playground in production
@@ -46,8 +50,9 @@ const server = new ApolloServer({
 
 const authUser = async req => {
   const token = await req.headers['authorization']
+
   try {
-    const { user } = await jwt.verify(token, process.env.SECRET)
+    const { user } = await jwt.verify(token, env.SECRET.value)
     req.user = user
     req.isAuth = true
   } catch (error) {
