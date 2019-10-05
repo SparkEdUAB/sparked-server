@@ -61,6 +61,7 @@ const userResolver = {
       return token
     },
     deleteUser(root, args, { user }) {
+      // Todo: check if the user is admin and prevent deletion
       if (!user) {
         throw new AuthenticationError('you must be logged in to delete a user')
       }
