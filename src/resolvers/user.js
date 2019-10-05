@@ -21,6 +21,7 @@ const userResolver = {
     },
   },
   Mutation: {
+    // Todo: Change this to createUser
     async register(root, { email, password, name, gender, role }) {
       let user = new User()
       user.email = email
@@ -51,13 +52,22 @@ const userResolver = {
       //   sign in the user
       const token = await jwt.sign(
         {
-          user: pick(user, ['_id', 'email', 'name']),
+          user: pick(user, ['_id', 'email', 'name', 'role']),
         },
         SECRET,
         // this token will last for a year, this should be adjusted accordingly
         { expiresIn: '1y' }
       )
       return token
+    },
+    deleteUser(root, args, { user }) {
+      if (!user) {
+        throw new AuthenticationError('you must be logged in to delete a user')
+      }
+      if (user.role != 'admin') {
+        throw new Error('you must be an admin to delete a user')
+      }
+      return User.deleteMany({ _id: { $in: args.ids } })
     },
   },
 }

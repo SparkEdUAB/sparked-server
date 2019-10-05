@@ -15,6 +15,7 @@ const userDefs = gql`
       role: String
     ): User!
     login(email: String!, password: String!): String!
+    deleteUser(ids: [String]!): User
   }
   type User {
     _id: String

@@ -39,6 +39,13 @@ const server = new ApolloServer({
       SECRET: process.env.SECRET,
     }
   },
+  formatError: error => {
+    console.log(error)
+    return error
+  },
+  formatResponse: response => {
+    return response
+  },
   // temporaly allow the playground in production
   introspection: true,
   playground: true,
