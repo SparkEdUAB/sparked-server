@@ -51,7 +51,7 @@ const userResolver = {
       //   sign in the user
       const token = await jwt.sign(
         {
-          user: pick(user, ['_id', 'email']),
+          user: pick(user, ['_id', 'email', 'name']),
         },
         SECRET,
         // this token will last for a year, this should be adjusted accordingly
