@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-express'
 const unitDefs = gql`
   type Query {
     getUnits: [Unit]
+    getUnitsByCourseId(courseId: String!): [Unit]
   }
   type Mutation {
     addUnit(

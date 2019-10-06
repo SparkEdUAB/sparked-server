@@ -7,6 +7,9 @@ const unitResolvers = {
     getUnits(root, args, { user }) {
       return Unit.find({ createdBy: user._id })
     },
+    getUnitsByCourseId(root, args, { user }) {
+      return Unit.find({ createdBy: user._id, courseId: args.courseId })
+    },
   },
   Unit: {
     topics: unit => {
