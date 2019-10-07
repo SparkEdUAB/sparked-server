@@ -1,5 +1,10 @@
 {
-  "version": 1,
   "name": "sparked-server",
-  "alias": "sparked.now.sh"
+  "version": 2,
+  "alias": "sparked-server",
+  "env": {
+    "MONGODB_URI": "@sparked-ri",
+    "USER": "@user",
+    "PASS": "@pass"
+  }
 }
