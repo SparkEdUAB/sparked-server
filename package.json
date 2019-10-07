@@ -46,7 +46,6 @@
     "build": "babel ./src --out-dir dist",
     "prod": "NODE_ENV=production npm run clean && npm run build && npm run serve",
     "serve": "NODE_ENV=production node dist/index.js",
-    "heroku-postbuild": "NODE_ENV=production npm run clean && npm run build && npm run serve",
     "clean": "rimraf dist"
   },
   "repository": {
