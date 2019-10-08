@@ -4,7 +4,7 @@
   "description": "a server for sparked",
   "main": "index.js",
   "engines": {
-    "node": "10.x"
+    "node": "11.x"
   },
   "dependencies": {
     "@babel/runtime": "^7.6.2",
