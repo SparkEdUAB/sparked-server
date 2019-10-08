@@ -39,14 +39,14 @@
     "prettier": "^1.17.1"
   },
   "scripts": {
-    "start": "nodemon ./src/index.js --exec babel-node",
+    "start": "node ./src/index.js --exec babel-node",
     "dev": "NODE_ENV=development nodemon ./src/index.js --exec babel-node",
     "test": "jest --config ./jest.config.js",
     "lint": "eslint .",
     "build": "babel ./src --out-dir dist",
     "prod": "NODE_ENV=production npm run clean && npm run build && npm run serve",
     "serve": "NODE_ENV=production node dist/index.js",
-    "heroku-postbuild": "NODE_ENV=production npm run clean && npm run build && npm run serve",
+    "heroku-postbuild": "NODE_ENV=production npm run clean && npm run build",
     "clean": "rimraf dist"
   },
   "repository": {
