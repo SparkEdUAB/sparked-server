@@ -29,7 +29,6 @@ npm uninstall -g babel
 npm install --save-dev @babel/core @babel/cli
 npm install --production
 echo "production running"
-npm prune --production
 npm run build
 echo "Just ran the build"
 
