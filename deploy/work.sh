@@ -24,12 +24,6 @@ else
   cd $APP_DIR/code
 fi
 
-# Install dependencies
-# npm uninstall -g babel
-# npm install
-# npm install --save-dev @babel/core @babel/cli
-# npm install --save-dev @babel/plugin-transform-runtime
-# npm install --save @babel/runtime
 npm i -g yarn
 yarn 
 # npm install --production
