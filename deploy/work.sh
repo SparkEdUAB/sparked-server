@@ -27,6 +27,8 @@ fi
 # Install dependencies
 npm uninstall -g babel
 npm install --save-dev @babel/core @babel/cli
+npm install --save-dev @babel/plugin-transform-runtime
+npm install --save @babel/runtime
 npm install --production
 echo "production running"
 npm run build
