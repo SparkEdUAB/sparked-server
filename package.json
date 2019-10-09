@@ -3,9 +3,6 @@
   "version": "0.0.1",
   "description": "a server for sparked",
   "main": "index.js",
-  "engines": {
-    "node": "11.x"
-  },
   "dependencies": {
     "@babel/runtime": "^7.6.3",
     "apollo-server-express": "^2.9.5",
