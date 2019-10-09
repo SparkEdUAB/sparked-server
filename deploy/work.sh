@@ -26,8 +26,10 @@ fi
 
 # Install dependencies
 npm install --production
+echo "production running"
 npm prune --production
 npm run build
+echo "Just ran the build"
 
 # Restart app
 passenger-config restart-app --ignore-app-not-running --ignore-passenger-not-running $RESTART_ARGS $APP_DIR/code
