@@ -15,6 +15,8 @@ The above graph is initial and doesn't contain all data, this is likely to be up
 
 The following are examples of data of GraphQL queries and mutations
 
+You can try out the online playground here https://sparked-server.herokuapp.com/graphiql
+
 ### Authentication
 
 All the queries need to be authenticated, you can authenticate via a login mutation
