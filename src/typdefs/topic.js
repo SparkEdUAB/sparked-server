@@ -3,6 +3,7 @@ import { gql } from 'apollo-server-express'
 const topicDefs = gql`
   type Query {
     getTopics: [Topic]
+    getTopicsByUnitId(unitId: String!): [Topic]
   }
   type Mutation {
     addTopic(

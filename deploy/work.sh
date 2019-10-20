@@ -5,7 +5,7 @@ set -e
 
 APP_DIR=/var/www/spark
 GIT_URL=git://github.com/sparkeduab/sparked-server
-RESTART_ARGS=
+RESTART_ARGS=--rolling-restart
 
 # Uncomment and modify the following if you installed Passenger from tarball
 #export PATH=/path-to-passenger/bin:$PATH

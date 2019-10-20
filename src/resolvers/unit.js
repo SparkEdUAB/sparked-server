@@ -5,15 +5,15 @@ import { Topic } from '../models/topic'
 const unitResolvers = {
   Query: {
     getUnits(root, args, { user }) {
-      return Unit.find({ createdBy: user._id })
+      return Unit.find({})
     },
     getUnitsByCourseId(root, args, { user }) {
-      return Unit.find({ createdBy: user._id, courseId: args.courseId })
+      return Unit.find({ courseId: args.courseId })
     },
   },
   Unit: {
     topics: unit => {
-      return Topic.find({ unitId: unit.unitId })
+      return Topic.find({ unitId: unit._id })
     },
   },
   Mutation: {

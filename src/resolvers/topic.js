@@ -7,6 +7,9 @@ const topicResolvers = {
     getTopics(root, args, context) {
       return Topic.find({})
     },
+    getTopicsByUnitId(root, args, context) {
+      return Topic.find({ unitId: args.unitId })
+    },
   },
   Topic: {
     resources: topic => {

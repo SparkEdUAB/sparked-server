@@ -41,7 +41,6 @@ const server = new ApolloServer({
     }
   },
   formatError: error => {
-    console.log(error)
     return error
   },
   formatResponse: response => {
