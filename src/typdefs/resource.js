@@ -4,12 +4,16 @@ const resourceDefs = gql`
   scalar Upload
   type Query {
     uploads: [File]
-    getFiles: String
+    getFiles: [File]
   }
   type File {
-    filename: String!
-    mimetype: String
+    filename: String
+    path: String
+    unitId: String
     topicId: String
+    unit: String
+    createdAt: String
+    createdBy: String
   }
 
   type Mutation {

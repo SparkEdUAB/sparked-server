@@ -22,6 +22,7 @@ const topicResolvers = {
       if (!user) {
         throw new AuthenticationError('You must be logged in to add a topic')
       }
+
       const topic = new Topic()
       topic.name = args.name
       topic.unit = args.unit // supposed to be the name for the unit
