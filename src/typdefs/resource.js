@@ -7,6 +7,7 @@ const resourceDefs = gql`
     getFiles: [File]
   }
   type File {
+    _id: String
     filename: String
     path: String
     unitId: String
