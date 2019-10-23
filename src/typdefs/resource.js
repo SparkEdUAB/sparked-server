@@ -4,6 +4,7 @@ const resourceDefs = gql`
   scalar Upload
   type Query {
     uploads: [File]
+    getFiles: String
   }
   type File {
     filename: String!
@@ -12,7 +13,7 @@ const resourceDefs = gql`
   }
 
   type Mutation {
-    singleUpload(file: Upload): File!
+    singleUpload(file: Upload): File
   }
 `
 export default resourceDefs
