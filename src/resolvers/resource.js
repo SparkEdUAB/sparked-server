@@ -8,6 +8,9 @@ export const resourceResolver = {
     getFiles() {
       return Resource.find({})
     },
+    getResourcesByTopicId(root, args, context) {
+      return Resource.find({ topicId: args.topicId })
+    },
   },
   Mutation: {
     // todo => properly stream the file to GridFS

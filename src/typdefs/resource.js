@@ -5,6 +5,7 @@ const resourceDefs = gql`
   type Query {
     uploads: [File]
     getFiles: [File]
+    getResourcesByTopicId(topicId: String): [File]
   }
   type File {
     _id: String
