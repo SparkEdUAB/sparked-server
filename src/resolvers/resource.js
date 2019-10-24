@@ -16,8 +16,8 @@ export const resourceResolver = {
       const { createReadStream, filename, mimetype, encoding } = await file
       // console.log(await filename)
       const stream = createReadStream()
-      // const id = shortid.generate()
-      const path = `public/uploads/${user._id}-${filename}`
+      const id = shortid.generate()
+      const path = `public/uploads/${id}-${filename}`
       const _file = { filename, mimetype, path }
 
       // Store the file in the filesystem.
