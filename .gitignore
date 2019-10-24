@@ -61,3 +61,8 @@ typings/
 .next
 dist/
 configs/env-c.json
+
+#ignore uploads and media
+public/uploads/*
+*.jpg
+*.png

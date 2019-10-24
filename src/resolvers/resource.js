@@ -1,6 +1,6 @@
 const UPLOAD_DIR = '/Users/olivierjm/sparked-server'
 import { Resource } from '../models/resource'
-const { createWriteStream, unlink } = require('fs')
+import { createWriteStream, unlink } from 'fs'
 
 export const resourceResolver = {
   Query: {
@@ -12,12 +12,12 @@ export const resourceResolver = {
   Mutation: {
     // todo => properly stream the file to GridFS
     // todo =>  get user id and append it to the file object
-    async singleUpload(root, { file }) {
+    async singleUpload(root, { file }, { user }) {
       const { createReadStream, filename, mimetype, encoding } = await file
       // console.log(await filename)
       const stream = createReadStream()
       // const id = shortid.generate()
-      const path = `${UPLOAD_DIR}/${34}-${filename}`
+      const path = `public/uploads/${user._id}-${filename}`
       const _file = { filename, mimetype, path }
 
       // Store the file in the filesystem.
