@@ -19,7 +19,8 @@ const resourceDefs = gql`
   }
 
   type Mutation {
-    singleUpload(file: Upload, topicId: String): File
+    # singleUpload(file: Upload, topicId: String): File
+    multipleUpload(files: [Upload], topicId: String): [File]
   }
 `
 export default resourceDefs
