@@ -1,5 +1,4 @@
 import { createWriteStream, unlink, unlinkSync, existsSync } from 'fs'
-import shortid from 'shortid'
 import { Resource } from '../models/resource'
 import Mongoose from 'mongoose'
 
@@ -20,10 +19,9 @@ export const resourceResolver = {
     async multipleUpload(root, args, { user }) {
       await Promise.all(
         args.files.map(async file => {
-          const { createReadStream, filename, mimetype, encoding } = await file
+          const { createReadStream, filename, mimetype } = await file
           const id = Mongoose.Types.ObjectId()
           const stream = createReadStream()
-          // const _id = shortid.generate()
           const path = `${filePath}${id}-${filename}`
           // Store the file in the filesystem.
 
@@ -42,6 +40,7 @@ export const resourceResolver = {
           resource._id = id
           resource.filename = filename
           resource.path = path
+          resource.type = mimetype
           resource.createdAt = new Date()
           resource.createdBy = user._id
           resource.topicId = args.topicId

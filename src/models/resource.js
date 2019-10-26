@@ -9,6 +9,7 @@ const resourceSchema = mongoose.Schema({
   createdBy: String,
   filename: String,
   path: String,
+  type: String,
 })
 
 export const Resource = mongoose.model('Resources', resourceSchema)

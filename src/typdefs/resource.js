@@ -14,6 +14,7 @@ const resourceDefs = gql`
     unitId: String
     topicId: String
     unit: String
+    type: String
     createdAt: String
     createdBy: String
   }
