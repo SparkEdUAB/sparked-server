@@ -21,6 +21,7 @@ const resourceDefs = gql`
   type Mutation {
     # singleUpload(file: Upload, topicId: String): File
     multipleUpload(files: [Upload], topicId: String): [File]
+    deleteResources(ids: [String]): File
   }
 `
 export default resourceDefs
