@@ -1,4 +1,4 @@
-import { createWriteStream, unlink, readdir, unlinkSync } from 'fs'
+import { createWriteStream, unlink, unlinkSync, existsSync } from 'fs'
 import shortid from 'shortid'
 import { Resource } from '../models/resource'
 import Mongoose from 'mongoose'
@@ -56,9 +56,13 @@ export const resourceResolver = {
           'you must be logged in to delete a course'
         )
       }
+      // put this in a promise or an observable
       ids.map(id => {
-        Resource.findOne({ _id: id }).then(x => {
-          unlinkSync(x.path)
+        Resource.findOne({ _id: id }).then(file => {
+          if (existsSync(file.path)) {
+            unlinkSync(file.path)
+          }
+          return "File doesn't exist"
         })
       })
       Resource.deleteMany({ _id: { $in: ids } })
