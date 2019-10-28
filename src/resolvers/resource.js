@@ -3,6 +3,7 @@ import { Resource } from '../models/resource'
 import Mongoose from 'mongoose'
 
 const filePath = 'public/uploads/'
+
 export const resourceResolver = {
   Query: {
     // get all files and other file related queries
@@ -11,6 +12,9 @@ export const resourceResolver = {
     },
     getResourcesByTopicId(root, args, context) {
       return Resource.find({ topicId: args.topicId })
+    },
+    getResource(root, args, context) {
+      return Resource.find({ _id: Mongoose.Types.ObjectId(args.id) })
     },
   },
   Mutation: {

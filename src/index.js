@@ -4,6 +4,7 @@ import mongoose from 'mongoose'
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
+import path from 'path'
 // resolvers
 import resolvers from './resolvers'
 
@@ -22,10 +23,12 @@ mongoose.Promise = global.Promise
 // todo: check the current environment and run a specific db
 //mongoose.connect(`mongodb://${process.env.USER}:${process.env.PASS}@ds157276.mlab.com:57276/sparked-test`, {
 mongoose.connect('mongodb://127.0.0.1:27017/sparked-test', {
-  useNewUrlParser: true,
+  // useNewUrlParser: true,
+  // useUnifiedTopology: true,
 })
 
 const graphQLServer = express()
+const fileServer = express()
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -64,11 +67,13 @@ const authUser = async req => {
   req.next()
 }
 graphQLServer.use(authUser)
+// graphQLServer.use('/files', express.static('public'))
+graphQLServer.use('/static', express.static('public'))
 server.applyMiddleware({ app: graphQLServer, path: '/graphiql' })
 
 // rest api instead
 // you can define other endpoints here
-graphQLServer.get('/courses', (req, res, next) => {
+graphQLServer.get('/api/courses', (req, res, next) => {
   Course.find({}).exec((_err, _res) => res.json(_res))
 })
 
@@ -76,3 +81,8 @@ const port = process.env.NODE_ENV === 'production' ? process.env.PORT : 5000
 graphQLServer.listen(port, () =>
   console.log(`GraphiQL is now running on http://localhost:${port}/graphiql`)
 )
+
+// fileServer.listen(4000, () => {
+//   console.log("listening on port 4000");
+
+// })
