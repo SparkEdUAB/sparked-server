@@ -14,7 +14,7 @@ export const resourceResolver = {
       return Resource.find({ topicId: args.topicId })
     },
     getResource(root, args, context) {
-      return Resource.find({ _id: Mongoose.Types.ObjectId(args.id) })
+      return Resource.findOne({ _id: Mongoose.Types.ObjectId(args.id) })
     },
   },
   Mutation: {

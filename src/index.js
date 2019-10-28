@@ -23,12 +23,12 @@ mongoose.Promise = global.Promise
 // todo: check the current environment and run a specific db
 //mongoose.connect(`mongodb://${process.env.USER}:${process.env.PASS}@ds157276.mlab.com:57276/sparked-test`, {
 mongoose.connect('mongodb://127.0.0.1:27017/sparked-test', {
-  // useNewUrlParser: true,
-  // useUnifiedTopology: true,
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
 
 const graphQLServer = express()
-const fileServer = express()
+// const fileServer = express()
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -68,7 +68,7 @@ const authUser = async req => {
 }
 graphQLServer.use(authUser)
 // graphQLServer.use('/files', express.static('public'))
-graphQLServer.use('/static', express.static('public'))
+graphQLServer.use('/public', express.static('public'))
 server.applyMiddleware({ app: graphQLServer, path: '/graphiql' })
 
 // rest api instead
