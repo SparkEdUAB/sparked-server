@@ -12,6 +12,7 @@ import resolvers from './resolvers'
 import typeDefs from './typdefs'
 
 import { Course } from './models/courses'
+import http from 'http'
 
 dotenv.config()
 
@@ -28,7 +29,6 @@ mongoose.connect('mongodb://127.0.0.1:27017/sparked-test', {
 })
 
 const graphQLServer = express()
-// const fileServer = express()
 
 const schema = makeExecutableSchema({
   typeDefs,
@@ -36,7 +36,10 @@ const schema = makeExecutableSchema({
 })
 const server = new ApolloServer({
   schema,
-  context: ({ req }) => {
+  context: async ({ req, connection }) => {
+    if (connection) {
+      return connection.context
+    }
     const _user = req.user
     return {
       user: _user,
@@ -69,8 +72,10 @@ const authUser = async req => {
 graphQLServer.use(authUser)
 // graphQLServer.use('/files', express.static('public'))
 graphQLServer.use('/public', express.static('public'))
-server.applyMiddleware({ app: graphQLServer, path: '/graphiql' })
 
+const httpServer = http.createServer(graphQLServer)
+server.applyMiddleware({ app: graphQLServer, path: '/graphiql' })
+server.installSubscriptionHandlers(httpServer)
 // rest api instead
 // you can define other endpoints here
 graphQLServer.get('/api/courses', (req, res, next) => {
@@ -78,11 +83,9 @@ graphQLServer.get('/api/courses', (req, res, next) => {
 })
 
 const port = process.env.NODE_ENV === 'production' ? process.env.PORT : 5000
-graphQLServer.listen(port, () =>
+httpServer.listen(port, () => {
   console.log(`GraphiQL is now running on http://localhost:${port}/graphiql`)
-)
-
-// fileServer.listen(4000, () => {
-//   console.log("listening on port 4000");
-
-// })
+  console.log(
+    `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
+  )
+})

@@ -1,6 +1,9 @@
 import { gql } from 'apollo-server-express'
 
 const courseDefs = gql`
+  type Subscription {
+    courseAdded: Course
+  }
   type Query {
     getCourses: [Course]
   }

@@ -1,9 +1,16 @@
-import { AuthenticationError } from 'apollo-server-express'
+import { AuthenticationError, PubSub } from 'apollo-server-express'
 import { Course } from '../models/courses'
 import { Unit } from '../models/unit'
 import { Topic } from '../models/topic'
 
+export const pubsub = new PubSub()
+const COURSE_ADDED = 'COURSE_ADDED'
 const resolvers = {
+  Subscription: {
+    courseAdded: {
+      subscribe: () => pubsub.asyncIterator([COURSE_ADDED]),
+    },
+  },
   Query: {
     getCourses(root, args, { user }) {
       return Course.find({})
@@ -23,10 +30,12 @@ const resolvers = {
       if (!user) {
         throw new AuthenticationError('you must be logged in to add a course')
       }
+
       let course = new Course()
       course.name = args.name
       course.createdAt = new Date()
       course.createdBy = user._id
+      pubsub.publish(COURSE_ADDED, { courseAdded: args })
       return course.save()
     },
     deleteCourse(root, args, { user }) {
