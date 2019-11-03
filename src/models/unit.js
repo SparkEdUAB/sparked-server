@@ -12,6 +12,7 @@ export const UnitSchema = mongoose.Schema({
   },
   createdAt: Date,
   createdBy: String,
+   createdByName: String,
 })
 
 const Unit = mongoose.model('Units', UnitSchema)

@@ -35,6 +35,7 @@ const resolvers = {
       course.name = args.name
       course.createdAt = new Date()
       course.createdBy = user._id
+      course.createdByName = user.name
       pubsub.publish(COURSE_ADDED, { courseAdded: args })
       return course.save()
     },

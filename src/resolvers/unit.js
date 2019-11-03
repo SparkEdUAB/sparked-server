@@ -27,6 +27,7 @@ const unitResolvers = {
       unit.courseId = args.courseId
       unit.createdAt = new Date()
       unit.createdBy = user._id
+      unit.createdByName = user.name
       return unit.save()
     },
     deleteUnit(root, args, { user }) {

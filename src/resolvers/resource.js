@@ -48,6 +48,7 @@ export const resourceResolver = {
           resource.type = mimetype
           resource.createdAt = new Date()
           resource.createdBy = user._id
+          resource.createdByName = user.name
           resource.topicId = args.topicId
 
           return resource.save()

@@ -4,7 +4,6 @@ import mongoose from 'mongoose'
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-express'
 import jwt from 'jsonwebtoken'
 import dotenv from 'dotenv'
-import path from 'path'
 // resolvers
 import resolvers from './resolvers'
 

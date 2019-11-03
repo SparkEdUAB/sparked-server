@@ -18,6 +18,7 @@ const resourceDefs = gql`
     type: String
     createdAt: String
     createdBy: String
+    createdByName: String
   }
 
   type Mutation {

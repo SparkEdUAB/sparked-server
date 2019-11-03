@@ -22,6 +22,7 @@ const unitDefs = gql`
     topics: [Topic]
     createdAt: String
     createdBy: String
+    createdByName: String
   }
 `
 export default unitDefs
