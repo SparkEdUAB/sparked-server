@@ -16,6 +16,7 @@ const CourseSchema = mongoose.Schema({
   },
   createdAt: Date,
   createdBy: String,
+  createdByName: String,
 })
 
 const Course = mongoose.model('Courses', CourseSchema)

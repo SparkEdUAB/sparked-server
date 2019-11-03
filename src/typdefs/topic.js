@@ -24,6 +24,7 @@ const topicDefs = gql`
     courseId: String
     createdAt: String
     createdBy: String
+    createdByName: String
   }
 `
 export default topicDefs

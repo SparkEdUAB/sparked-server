@@ -4,14 +4,9 @@ export const UnitSchema = mongoose.Schema({
   name: String,
   code: String,
   courseId: String,
-  details: {
-    courseId: {
-      type: String,
-      require: false,
-    },
-  },
   createdAt: Date,
   createdBy: String,
+  createdByName: String,
 })
 
 const Unit = mongoose.model('Units', UnitSchema)

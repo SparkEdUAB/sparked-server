@@ -30,6 +30,7 @@ const topicResolvers = {
       topic.courseId = args.courseId
       topic.createdAt = new Date()
       topic.createdBy = user._id
+      topic.createdByName = user.name
       return topic.save()
     },
 
