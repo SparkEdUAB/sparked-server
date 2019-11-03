@@ -7,7 +7,7 @@ const resourceSchema = mongoose.Schema({
   unit: String,
   createdAt: Date,
   createdBy: String,
-   createdByName: String,
+  createdByName: String,
   filename: String,
   path: String,
   type: String,

@@ -8,7 +8,7 @@ const topicSchema = mongoose.Schema({
   //   resources: Array, // removed this for now
   createdAt: Date,
   createdBy: String,
-   createdByName: String,
+  createdByName: String,
 })
 
 export const Topic = mongoose.model('Topics', topicSchema)

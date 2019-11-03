@@ -20,7 +20,7 @@ const courseDefs = gql`
     topics: [Topic]
     createdAt: String
     createdBy: String
-     createdByName: String
+    createdByName: String
   }
 `
 export default courseDefs
