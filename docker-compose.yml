@@ -9,7 +9,5 @@ services:
     build:
       context: .
     container_name: "sparked"
-    environment:
-      MONGO: "mongodb://mongodb:27017/sparked-test"
     ports:
       - 3000:3000

@@ -6,6 +6,7 @@ COPY . /src
 WORKDIR src
 
 RUN npm install
+RUN npm install -g nodemon
 
 FROM node:8.11.3-alpine as runtime
 

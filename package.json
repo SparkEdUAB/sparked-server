@@ -38,7 +38,10 @@
     "prettier": "^1.17.1"
   },
   "scripts": {
-    "start": "node dist/index.js",
+    "babel-node": "babel-node ",
+    "//": "nodemon --exec npm run babel-node  -- src/index.js",
+    "///": "node ./node_modules/babel-cli/bin/babel-node.js src/index.js",
+    "start": "node ./node_modules/@babel/node/bin/babel-node.js src/index.js",
     "dev": "NODE_ENV=development nodemon ./src/index.js --exec babel-node",
     "test": "jest --config ./jest.config.js",
     "lint": "eslint .",
@@ -46,7 +49,8 @@
     "prod": "NODE_ENV=production npm run clean && npm run build && npm run serve",
     "serve": "NODE_ENV=production node dist/index.js",
     "heroku-postbuild": "NODE_ENV=production npm run clean && npm run build",
-    "clean": "rimraf dist"
+    "clean": "rimraf dist",
+    "docker:up": "docker-compose up --build"
   },
   "repository": {
     "type": "git",
