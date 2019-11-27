@@ -22,7 +22,7 @@
     "shortid": "^2.2.15"
   },
   "devDependencies": {
-    "@babel/cli": "^7.7.0",
+    "@babel/cli": "^7.7.4",
     "@babel/core": "^7.7.2",
     "@babel/node": "^7.7.0",
     "@babel/plugin-transform-runtime": "^7.6.2",
