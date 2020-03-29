@@ -5,7 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "apollo-server-express": "^2.11.0",
-    "@babel/runtime": "^7.8.7",
+    "@babel/runtime": "^7.9.2",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
