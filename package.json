@@ -4,7 +4,7 @@
   "description": "a server for sparked",
   "main": "index.js",
   "dependencies": {
-    "apollo-server-express": "^2.13.0",
+    "apollo-server-express": "^2.13.1",
     "@babel/runtime": "^7.9.6",
     "axios": "^0.19.2",
     "bcryptjs": "^2.4.3",
