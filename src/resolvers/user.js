@@ -1,7 +1,6 @@
 import bcrypt from 'bcryptjs'
 import jwt from 'jsonwebtoken'
 import { AuthenticationError } from 'apollo-server-express'
-import pick from 'lodash/pick'
 import User from '../models/user'
 
 const userResolver = {
@@ -40,19 +39,21 @@ const userResolver = {
       user.role = !users.length ? 'admin' : 'student'
       return user.save()
     },
-    async login(root, { email, password }, { SECRET }) {
-      const user = await User.findOne({ email })
+    async login(_root, args, { SECRET }) {
+      const user = await User.findOne({ email: args.email })
       if (!user) {
         throw new Error('No user found ')
       }
-      const isValid = await bcrypt.compare(password, user.password)
+      const isValid = await bcrypt.compare(args.password, user.password)
       if (!isValid) {
         throw new AuthenticationError('Incorrect password ')
       }
+
+      const { _id, email, name, role } = user
       //   sign in the user
       const token = await jwt.sign(
         {
-          user: pick(user, ['_id', 'email', 'name', 'role']),
+          user: { _id, email, name, role },
         },
         SECRET,
         // this token will last for a year, this should be adjusted accordingly
