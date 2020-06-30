@@ -10,7 +10,7 @@
     "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "graphql": "^15.1.0",
+    "graphql": "^15.2.0",
     "gridfs-stream": "^1.1.1",
     "jsonwebtoken": "^8.5.1",
     "merge-graphql-schemas": "^1.7.8",
