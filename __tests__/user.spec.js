@@ -16,8 +16,6 @@ describe('user resolvers', () => {
               }
         `,
     })
-    console.log(registerResponse.data)
-
     const {
       data: {
         data: { register },
