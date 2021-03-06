@@ -7,15 +7,16 @@ describe('user resolvers', () => {
   test('should create the user', async () => {
     const registerResponse = await axios.post(process.env.URL, {
       query: `
-            mutation {
-                register(email:"joe@gmail.com", password:"123456"){
-                    username
-                    email
-                    password
+              mutation {
+                register(email: "joe@gmail.com", password: "123456", name:"some") {
+                  username
+                  email
+                  password
                 }
-                }
+              }
         `,
     })
+    console.log(registerResponse.data)
 
     const {
       data: {
