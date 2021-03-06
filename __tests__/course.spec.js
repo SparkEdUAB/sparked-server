@@ -4,9 +4,9 @@ import dotenv from 'dotenv'
 dotenv.config()
 
 describe('courses resolvers', () => {
-
+  // This should be put elsewhere, not the best I could do 🙈
   beforeAll(async () => {
-    const registerResponse = await axios.post(process.env.URL, {
+    await axios.post(process.env.URL, {
       query: `
               mutation {
                 register(email: "joe@gmail.com", password: "123456", name:"some") {
@@ -57,7 +57,7 @@ describe('courses resolvers', () => {
 
   test('should create a course and return proper data', async () => {
     // log the user in first and grab the token
-    
+
     const loginResponse = await axios.post(process.env.URL, {
       query: `
             mutation {
@@ -70,7 +70,6 @@ describe('courses resolvers', () => {
         data: { login },
       },
     } = loginResponse
-  
 
     const course = await axios.post(
       process.env.URL,
@@ -96,7 +95,7 @@ describe('courses resolvers', () => {
         data: { addCourse },
       },
       data,
-    } = await course
+    } = course
     expect(addCourse.name).toBe('Another Introduction')
     // expect(addCourse).toMatchSnapshot()
   })
