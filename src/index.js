@@ -1,4 +1,3 @@
-/* eslint-disable */
 import express from "express";
 import mongoose from "mongoose";
 import { ApolloServer, makeExecutableSchema } from "apollo-server-express";
@@ -76,7 +75,7 @@ graphQLServer.get("/api/courses", (req, res, next) => {
   Course.find({}).exec((_err, _res) => res.json(_res));
 });
 
-const port = process.env.PORT;
+const port = process.env.GRAPHQL_PORT;
 httpServer.listen(port, () => {
   console.log(
     `🚀 Server ready at http://localhost:${port}${server.graphqlPath}`
